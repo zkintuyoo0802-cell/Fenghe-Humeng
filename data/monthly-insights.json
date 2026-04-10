@@ -1,0 +1,166 @@
+{
+  "meta": {
+    "title": "FHA Monthly Insights 摘要",
+    "subtitle": "FengHe Asia Fund — 业绩与观点摘录（与《随笔》3D/5M/风控叙事对照）",
+    "note": "数据与表述摘自各期月报 PDF，仅供个人学习索引；不构成任何投资建议。"
+  },
+  "reports": [
+    {
+      "id": "202503",
+      "period": "2025-03",
+      "label": "2025年3月",
+      "performance": { "mtdPct": 0.54, "ytdPct": 4.52, "ttmPct": 8.18 },
+      "portfolio": { "leverage": 0.95, "aumUsdMil": 4369.0, "longs": 76, "shorts": 30 },
+      "themes": [
+        "一季度累计约 +4.5%；多空均有正贡献，相对 MSCI Asia 超额明显。",
+        "提及特朗普「解放日」后市场动荡、组合回撤后严格执行止损，gross 自约 95% 降至约 75%。",
+        "强调对关税扰动不恐慌，以自下而上与纪律应对波动。"
+      ],
+      "frameworkBridge": ["止损", "总头寸", "不预测市场", "自下而上"]
+    },
+    {
+      "id": "202504",
+      "period": "2025-04",
+      "label": "2025年4月",
+      "performance": { "mtdPct": -0.3, "ytdPct": 4.21, "ttmPct": 10.58 },
+      "portfolio": { "leverage": 0.77, "aumUsdMil": 4508.1, "longs": 50, "shorts": 37 },
+      "themes": [
+        "特朗普政策与关税噪音下的高波动；当月接近持平、守住 YTD。",
+        "组合止损触发后果断降 gross（约 95%→70%），强调「真正风险在 gross」、低 net 不能免疫双边亏损。",
+        "重申非方向性、自下而上；以基本面应对政策噪声（类比「暴风雨里加固房子」）。"
+      ],
+      "frameworkBridge": ["止损", "总头寸", "确定性", "自下而上"]
+    },
+    {
+      "id": "202505",
+      "period": "2025-05",
+      "label": "2025年5月",
+      "performance": { "mtdPct": 1.59, "ytdPct": 5.86, "ttmPct": 10.05 },
+      "portfolio": { "leverage": 0.84, "aumUsdMil": 4687.0, "longs": 61, "shorts": 40 },
+      "themes": [
+        "保守立场下仍取得正回报；组合分散（约 101 个名字）。",
+        "因估值与关税不确定性减持部分长期多头（如阿里、宁德时代），等待更好价位。",
+        "增加奢侈品等结构性空头叙事（「贪婪通胀」、中国地产泡沫外溢需求）。"
+      ],
+      "frameworkBridge": ["价值锚", "结构性做空", "三低", "D3 估值"]
+    },
+    {
+      "id": "202506",
+      "period": "2025-06",
+      "label": "2025年6月",
+      "performance": { "mtdPct": 0.91, "ytdPct": 6.83, "ttmPct": 5.86 },
+      "portfolio": { "leverage": 0.79, "aumUsdMil": 4873.7, "longs": 71, "shorts": 35 },
+      "themes": [
+        "强调地缘与 AI 等系统性风险需在公司层面管理；gross 维持低于约 80%。",
+        "增配中国股票：从「不可投资」叙事 vs 自下而上准备度（供应链、能源、金融基础设施等）对照。",
+        "团队扩充中国资深分析师，中国敞口自低位上升。"
+      ],
+      "frameworkBridge": ["不确定性", "自下而上", "三低", "门槛"]
+    },
+    {
+      "id": "202507",
+      "period": "2025-07",
+      "label": "2025年7月",
+      "performance": { "mtdPct": 4.96, "ytdPct": 12.12, "ttmPct": 10.92 },
+      "portfolio": { "leverage": 0.86, "aumUsdMil": 5133.9, "longs": 95, "shorts": 36 },
+      "themes": [
+        "多空均有贡献，平均 gross 约 83% 仍取得较强回报；科技供应链与医药突出。",
+        "医药长期为第三大贡献板块；以恒瑞医药等为例写长仓/短仓随环境切换。",
+        "强调回报质量与流程，而非赌方向。"
+      ],
+      "frameworkBridge": ["行业与确定性", "价值锚", "PM 定位 · 风险管理者", "命中率"]
+    },
+    {
+      "id": "202508",
+      "period": "2025-08",
+      "label": "2025年8月",
+      "performance": { "mtdPct": 3.24, "ytdPct": 15.76, "ttmPct": 13.75 },
+      "portfolio": { "leverage": 0.93, "aumUsdMil": 5371.7, "longs": 133, "shorts": 32 },
+      "themes": [
+        "A 股组合成为当月最大贡献；A 股 gross 自低位恢复至约 26%。",
+        "区分「国家宏观」与「公司盈利」：投资的是企业与企业家。",
+        "大量公司盈利预测上调 + 估值吸引，推动逐步加仓（三一重工等案例）。"
+      ],
+      "frameworkBridge": ["D1 ROE", "确定性", "价值交易者", "自下而上"]
+    },
+    {
+      "id": "202509",
+      "period": "2025-09",
+      "label": "2025年9月",
+      "performance": { "mtdPct": 7.1, "ytdPct": 23.97, "ttmPct": 20.03 },
+      "portfolio": { "leverage": 0.86, "aumUsdMil": 5915.3 },
+      "themes": [
+        "在 gross 低于约 90% 情况下仍大幅跑赢；主动止盈，gross 约 93%→86%。",
+        "强调 YTD alpha 质量（文中提及约 11%+ alpha、平均 gross 约 90%）。",
+        "科技供应链、工业、医疗、消费、金融等多团队分散贡献。"
+      ],
+      "frameworkBridge": ["三低", "确定性", "流程与执行", "真正的对冲基金"]
+    },
+    {
+      "id": "202510",
+      "period": "2025-10",
+      "label": "2025年10月",
+      "performance": { "mtdPct": 1.37, "ytdPct": 25.67, "ttmPct": 22.01 },
+      "portfolio": { "leverage": 0.78, "aumUsdMil": 6212.0 },
+      "themes": [
+        "讨论「AI 是否有泡沫」：技术非泡沫、资本市场预期可能泡沫；电力等物理约束。",
+        "AI 三阶段：Formation / Adjustment / Maturity；不预测拐点，组合求平衡（中庸）。",
+        "降 AI 敞口，gross 至约 78%，AI 相关约 12%。"
+      ],
+      "frameworkBridge": ["D3 情绪估值", "不确定性", "3T", "止损"]
+    },
+    {
+      "id": "202511",
+      "period": "2025-11",
+      "label": "2025年11月",
+      "performance": { "mtdPct": -1.7, "ytdPct": 23.54, "ttmPct": 21.15 },
+      "portfolio": { "leverage": 0.83, "aumUsdMil": 6321.5 },
+      "themes": [
+        "上月已减仓 AI 后仍受波动拖累，单月约 -1.7%；强调 beta 与回撤管理。",
+        "系统阐述风险管理五支柱：估值纪律、团队多元、空头框架、流动性、止损。",
+        "空头为绝对收益导向，非仅对冲融资工具。"
+      ],
+      "frameworkBridge": ["止损", "做空与对冲", "三低", "团队"]
+    },
+    {
+      "id": "202512",
+      "period": "2025-12",
+      "label": "2025年12月",
+      "performance": { "mtdPct": 3.07, "ytdPct": 27.33, "ttmPct": 27.33 },
+      "portfolio": { "leverage": 1.07, "aumUsdMil": 6740.0 },
+      "themes": [
+        "2025 全年约 +27.3%，仅两个月下跌；科技供应链、工业、医疗、金融等广泛贡献。",
+        "明确写出「FengHe 3D」：D1 质地与复利、D2 与共识的预期差、D3 估值纪律；核心仓需满足多维度。",
+        "拒绝宏大宏观展望，强调备忘录文化与谦逊。"
+      ],
+      "frameworkBridge": ["框架 · 3D5M3T", "D1", "D2", "D3", "不预测市场"]
+    },
+    {
+      "id": "202601",
+      "period": "2026-01",
+      "label": "2026年1月",
+      "performance": { "mtdPct": 13.7, "ytdPct": 13.7, "ttmPct": 40.73 },
+      "portfolio": { "leverage": 1.21, "aumUsdMil": 7820.3 },
+      "themes": [
+        "单月约 +13.7%，史上仅次于 2015 年 4 月；强调非加杠杆、非集中赌方向。",
+        "框架演进：文中明确「3M → 5M3T3D」、LOGOS、memo 6.5 与流程可复制性。",
+        "存储（铠侠、三星等）、防务（韩华宇航）、中国工业标的等贡献。"
+      ],
+      "frameworkBridge": ["框架 · 3D5M3T", "LOGOS", "流程与执行", "命中率"]
+    },
+    {
+      "id": "202602",
+      "period": "2026-02",
+      "label": "2026年2月",
+      "performance": { "mtdPct": 3.61, "ytdPct": 17.8, "ttmPct": 44.29 },
+      "portfolio": { "leverage": 0.94, "aumUsdMil": 8628.9 },
+      "themes": [
+        "科技供应链与工业多头贡献；空头小幅拖累；多市场正贡献。",
+        "MLCC 链条（三环集团、风华高科）、三星存储涨价、川崎重工等。",
+        "主动止盈与降 gross（约 121%→93%）；地缘风险下进一步降至约 59%，强调非自上而下、而是估值与风险收益比。",
+        "霍尔木兹等地缘不确定性下的「谦逊对冲」与现金等待机会。"
+      ],
+      "frameworkBridge": ["止损", "D3", "总头寸", "不确定性", "自下而上"]
+    }
+  ]
+}

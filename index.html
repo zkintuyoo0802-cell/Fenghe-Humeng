@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>风和投资-胡猛知识库</title>
+    <style id="kb-critical-fallback">
+      /* 不依赖 dashboard.css：资源缺失时仍能显示告警 */
+      #kb-asset-warning {
+        display: none;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 12px 16px;
+        background: #fef2f2;
+        border-bottom: 2px solid #ef4444;
+        color: #111;
+        font: 14px/1.55 system-ui, -apple-system, sans-serif;
+      }
+      #kb-asset-warning.show {
+        display: block;
+      }
+      #kb-asset-warning code {
+        background: #fee2e2;
+        padding: 0 4px;
+        border-radius: 3px;
+        font-size: 0.92em;
+      }
+    </style>
+    <link rel="stylesheet" href="css/dashboard.css" />
+  </head>
+  <body>
+    <div id="kb-asset-warning" role="alert" hidden>
+      <strong>无法加载样式或数据。</strong>
+      常见原因：① 只复制了单个 HTML，未带上同级的 <code>css/</code>、<code>js/</code> 文件夹；② ZIP 未完整解压或路径被移动。
+      请把<strong>整个</strong>知识库文件夹解压到本地，再双击其中的 <code>index.html</code>。
+      若需「单文件」转发，请使用同目录下的 <code>index.standalone.html</code>（生成方式见页脚说明）。
+    </div>
+    <header class="app-header">
+      <h1 id="meta-title">风和投资-胡猛知识库</h1>
+      <p class="subtitle" id="meta-subtitle"></p>
+      <nav class="view-tabs" id="view-tabs" aria-label="视图切换">
+        <button type="button" class="view-tab active" data-view="framework" aria-selected="true">
+          随笔研究框架
+        </button>
+        <button type="button" class="view-tab" data-view="monthly" aria-selected="false">
+          FHA 月报观点与业绩
+        </button>
+        <button type="button" class="view-tab" data-view="stocks" aria-selected="false">
+          个股观点与操作
+        </button>
+      </nav>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar-framework" aria-label="框架筛选">
+        <div class="search-wrap">
+          <label for="search">关键词（支持多词，空格 AND）</label>
+          <input
+            id="search"
+            type="search"
+            placeholder="例如：ROE、做空、M2、3T、确定性…"
+            autocomplete="off"
+          />
+        </div>
+        <p class="category-label">分类</p>
+        <div id="category-chips" class="category-chips"></div>
+      </aside>
+
+      <aside class="sidebar hidden" id="sidebar-monthly" aria-label="月报筛选">
+        <div class="search-wrap">
+          <label for="search-monthly">检索月报（观点 / 业绩 / 对照标签）</label>
+          <input
+            id="search-monthly"
+            type="search"
+            placeholder="例如：止损、AI、gross、3D、恒瑞…"
+            autocomplete="off"
+          />
+        </div>
+        <p class="category-label">年份</p>
+        <div id="year-chips" class="category-chips"></div>
+      </aside>
+
+      <aside class="sidebar hidden" id="sidebar-stocks" aria-label="个股筛选">
+        <div class="search-wrap">
+          <label for="search-stock">检索个股（名称 / 代码 / 别名）</label>
+          <input
+            id="search-stock"
+            type="search"
+            placeholder="例如：恒瑞、三星、600276、ALGN…"
+            autocomplete="off"
+          />
+        </div>
+        <p class="category-label">标的列表</p>
+        <div id="stock-list" class="stock-list" role="listbox" aria-label="个股列表"></div>
+      </aside>
+
+      <main class="main">
+        <div id="panel-framework">
+        <div class="logic-strip" role="region" aria-label="逻辑链摘要">
+          <strong>逻辑链摘要：</strong>
+          认知与不确定性 → 不预测市场 / 宏观不驱动组合 → 自下而上多空 →
+          <strong>3D（ROE / 5M·结构周期·外延 / 情绪估值）</strong> +
+          <strong>3T</strong> → 三低组合 + 流程（LOGOS、止损）→ 确定性优先
+          <div class="logic-flow" aria-hidden="true">
+            <span class="flow-item">D1 ROE</span>
+            <span class="arrow">→</span>
+            <span class="flow-item">D2 5M×结构/周期</span>
+            <span class="arrow">→</span>
+            <span class="flow-item">D3 估值情绪</span>
+            <span class="arrow">|</span>
+            <span class="flow-item">3T 时间</span>
+            <span class="arrow">→</span>
+            <span class="flow-item">空头 M2/M3 · 双杀</span>
+          </div>
+        </div>
+
+        <div class="stats-bar">
+          <span>显示 <span class="count" id="stat-count">0</span> / <span id="stat-total">0</span> 条</span>
+          <div class="footer-actions">
+            <button type="button" class="export" id="export-json">导出当前结果为 JSON</button>
+          </div>
+        </div>
+
+        <div id="card-grid" class="card-grid"></div>
+        </div>
+
+        <div id="panel-monthly" class="hidden">
+          <div class="monthly-intro" id="monthly-intro"></div>
+          <div id="monthly-chart-wrap" class="monthly-chart-wrap" aria-label="月度收益图表"></div>
+          <div class="monthly-table-wrap">
+            <table class="monthly-table" id="monthly-table" aria-label="月度业绩一览">
+              <thead>
+                <tr>
+                  <th>期间</th>
+                  <th>MTD</th>
+                  <th>YTD</th>
+                  <th>TTM</th>
+                  <th>杠杆</th>
+                  <th>AUM (US$m)</th>
+                </tr>
+              </thead>
+              <tbody id="monthly-table-body"></tbody>
+            </table>
+          </div>
+          <div class="stats-bar">
+            <span>月报 <span class="count" id="monthly-stat-count">0</span> / <span id="monthly-stat-total">0</span> 期</span>
+            <div class="footer-actions">
+              <button type="button" class="export" id="export-monthly-json">导出当前筛选月报 JSON</button>
+            </div>
+          </div>
+          <div id="monthly-card-grid" class="card-grid monthly-card-grid"></div>
+        </div>
+
+        <div id="panel-stocks" class="hidden">
+          <div class="stock-panel-intro" id="stock-panel-intro"></div>
+          <div class="stats-bar">
+            <span>已选标的的历史表述 <span class="count" id="stock-mention-count">0</span> 条</span>
+            <div class="footer-actions">
+              <button type="button" class="export" id="export-stock-json">导出当前个股 JSON</button>
+            </div>
+          </div>
+          <div id="stock-detail" class="stock-detail"></div>
+        </div>
+
+        <footer class="site-footer" id="site-footer">
+          <p class="site-footer-title">离线使用与分享</p>
+          <ul class="site-footer-list">
+            <li><strong>推荐转发（单文件）：</strong>运行 <code>python scripts/build-standalone.py</code> 生成 <code>index.standalone.html</code>，只发该文件即可；内联样式与数据，双击即可用，不依赖子文件夹。</li>
+            <li><strong>文件夹版：</strong>将整个 <code>fenghe-dashboard</code> 打 ZIP（须包含 <code>css/</code>、<code>js/</code>、<code>data/</code>），解压后双击 <code>index.html</code>。勿只复制单个 HTML。</li>
+            <li><strong>可选在线托管：</strong>将该文件夹上传到 GitHub Pages、Cloudflare Pages、Netlify 等任意静态托管，即可通过网址访问（HTTP 模式下需 <code>data/keywords.json</code> 与 <code>data/monthly-insights.json</code>）。</li>
+          </ul>
+          <p class="site-footer-meta">数据：<code>scripts/embed-data.py</code> 合并 JSON → <code>js/data.js</code>。单文件版：<code>embed-data.py</code> 后运行 <code>python scripts/build-standalone.py</code>。离线双击 <code>index.html</code> 时浏览器不允许用 <code>fetch</code> 读本地 JSON，故必须存在已嵌入数据的 <code>js/data.js</code> 或使用 <code>index.standalone.html</code>。</p>
+        </footer>
+      </main>
+    </div>
+
+    <script src="js/data.js" defer></script>
+    <script src="js/dashboard.js" defer></script>
+    <script>
+      (function () {
+        function checkAssets() {
+          var link = document.querySelector('link[href*="dashboard.css"]');
+          var cssOk;
+          if (link) {
+            cssOk = !!link.sheet;
+          } else {
+            cssOk = document.querySelectorAll("head > style").length >= 2;
+          }
+          var dataOk =
+            typeof window.__FENGHE_KB__ === "object" && window.__FENGHE_KB__ !== null;
+          if (!cssOk || !dataOk) {
+            var w = document.getElementById("kb-asset-warning");
+            if (w) {
+              w.hidden = false;
+              w.classList.add("show");
+            }
+          }
+        }
+        window.addEventListener("load", checkAssets);
+      })();
+    </script>
+  </body>
+</html>

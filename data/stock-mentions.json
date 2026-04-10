@@ -1,0 +1,394 @@
+{
+  "meta": {
+    "title": "月报个股表述索引",
+    "note": "提炼自 FHA Monthly Insights 202503–202602 投资人信件；「引用原文」为可核对的摘录或引述，回查请以原信为准。仅供个人研究索引，不构成投资建议。"
+  },
+  "stocks": [
+    {
+      "id": "nitori",
+      "displayName": "宜得利 Nitori",
+      "aliases": ["Nitori", "宜得利", "日本宜得利"],
+      "tickers": ["9843.T"],
+      "mentions": [
+        {
+          "reportId": "202504",
+          "stance": "long",
+          "action": "案例/多头",
+          "quote": "作为受关税影响较小、内需为主的持仓案例：日本家具家居龙头，约九成收入来自日本国内。"
+        }
+      ]
+    },
+    {
+      "id": "alibaba",
+      "displayName": "阿里巴巴 Alibaba",
+      "aliases": ["Alibaba", "阿里", "阿里巴巴"],
+      "tickers": ["BABA", "9988.HK"],
+      "mentions": [
+        {
+          "reportId": "202505",
+          "stance": "long",
+          "action": "减持多头",
+          "quote": "5 月减持部分多头仓位：基本面未恶化，但股价与基本面脱节，在关税不确定性下等待更好再入场价位。"
+        }
+      ]
+    },
+    {
+      "id": "catl",
+      "displayName": "宁德时代 CATL",
+      "aliases": ["CATL", "宁德时代", "Contemporary Amperex"],
+      "tickers": ["300750.SZ"],
+      "mentions": [
+        {
+          "reportId": "202505",
+          "stance": "long",
+          "action": "减持多头",
+          "quote": "与阿里类似，因估值与关税不确定性减持长线多头，非基本面转差。"
+        },
+        {
+          "reportId": "202508",
+          "stance": "long",
+          "action": "案例",
+          "quote": "作为 A 股盈利逆势成长的典型样本，与恒瑞并列说明「宏观弱、公司强」。"
+        }
+      ]
+    },
+    {
+      "id": "jiangsu-hengrui",
+      "displayName": "恒瑞医药",
+      "aliases": ["恒瑞", "Hengrui", "Jiangsu Hengrui", "江苏恒瑞"],
+      "tickers": ["600276.SH"],
+      "mentions": [
+        {
+          "reportId": "202507",
+          "stance": "long",
+          "action": "核心持仓/高确信",
+          "quote": "当月第二大贡献之一；医药板块核心多头；历史上在 2018 年熊市为少数贡献多的多头、2021 年曾为贡献多的空头之一，体现同一标的随基本面与定价切换多空。"
+        },
+        {
+          "reportId": "202507",
+          "stance": "long",
+          "action": "研究观点",
+          "quote": "创新药转型、管线扩张、对外授权（如与 GSK）等作为长期看多逻辑；认为仍有上行空间。"
+        },
+        {
+          "reportId": "202508",
+          "stance": "long",
+          "action": "案例",
+          "quote": "作为 A 股盈利成长与全球竞争力的案例，与 CATL 一并引用。"
+        }
+      ]
+    },
+    {
+      "id": "betta",
+      "displayName": "贝达药业 Betta",
+      "aliases": ["Betta", "贝达药业", "Betta Pharmaceuticals"],
+      "tickers": ["300558.SZ"],
+      "mentions": [
+        {
+          "reportId": "202507",
+          "stance": "long",
+          "action": "历史贡献",
+          "quote": "信中列出的医药板块历年贡献标的之一（多空均有成功范例的语境）。"
+        }
+      ]
+    },
+    {
+      "id": "genscript",
+      "displayName": "金斯瑞 GenScript",
+      "aliases": ["GenScript", "金斯瑞", "GenScript Biotech"],
+      "tickers": ["1548.HK"],
+      "mentions": [
+        {
+          "reportId": "202507",
+          "stance": "long",
+          "action": "历史贡献",
+          "quote": "医药板块历年贡献代表公司之一。"
+        }
+      ]
+    },
+    {
+      "id": "3sbio",
+      "displayName": "三生制药 3SBio",
+      "aliases": ["3SBio", "三生制药"],
+      "tickers": ["1530.HK"],
+      "mentions": [
+        {
+          "reportId": "202507",
+          "stance": "long",
+          "action": "历史贡献",
+          "quote": "医药板块历年多空均有贡献的标的之一。"
+        }
+      ]
+    },
+    {
+      "id": "maccura",
+      "displayName": "迈克生物 Maccura",
+      "aliases": ["Maccura", "迈克生物", "Maccura Biotech"],
+      "tickers": ["300463.SZ"],
+      "mentions": [
+        {
+          "reportId": "202507",
+          "stance": "long",
+          "action": "历史贡献",
+          "quote": "医药板块贡献案例列举。"
+        }
+      ]
+    },
+    {
+      "id": "wuxi-apptec",
+      "displayName": "药明康德 WuXi AppTec",
+      "aliases": ["WuXi AppTec", "药明康德", "WuXi"],
+      "tickers": ["2359.HK", "603259.SH"],
+      "mentions": [
+        {
+          "reportId": "202507",
+          "stance": "long",
+          "action": "历史贡献",
+          "quote": "医药板块历年代表持仓之一（多空语境下均有贡献）。"
+        }
+      ]
+    },
+    {
+      "id": "daiichi-sankyo",
+      "displayName": "第一三共 Daiichi Sankyo",
+      "aliases": ["Daiichi Sankyo", "第一三共"],
+      "tickers": ["4568.T"],
+      "mentions": [
+        {
+          "reportId": "202507",
+          "stance": "long",
+          "action": "案例",
+          "quote": "去年 8 月日股剧烈调整时，日本医药持仓帮助组合度过回撤，体现跨区域医药选股能力。"
+        }
+      ]
+    },
+    {
+      "id": "align-tech",
+      "displayName": "Align Technology (ALGN)",
+      "aliases": ["ALGN", "Align Technology", "Invisalign", "艾利科技"],
+      "tickers": ["ALGN"],
+      "mentions": [
+        {
+          "reportId": "202507",
+          "stance": "short",
+          "action": "空头贡献",
+          "quote": "当月重要空头贡献之一：隐形正畸全球龙头份额被时代天使等中国竞争者侵蚀，看空其全球份额与盈利。"
+        }
+      ]
+    },
+    {
+      "id": "angelalign",
+      "displayName": "时代天使 Angelalign",
+      "aliases": ["Angelalign", "时代天使"],
+      "tickers": ["6699.HK"],
+      "mentions": [
+        {
+          "reportId": "202507",
+          "stance": "long",
+          "action": "竞争格局研究",
+          "quote": "作为理解 ALGN 空头与全球隐形正畸竞争格局的核心对标（中国公司出海与制造效率）。"
+        }
+      ]
+    },
+    {
+      "id": "xiaomi",
+      "displayName": "小米集团",
+      "aliases": ["Xiaomi", "小米", "小米集团"],
+      "tickers": ["1810.HK"],
+      "mentions": [
+        {
+          "reportId": "202507",
+          "stance": "long",
+          "action": "持仓",
+          "quote": "信中称目前持有 28 个中国公司多头之一，作为逆境中仍具活力与创新力的代表。"
+        }
+      ]
+    },
+    {
+      "id": "pop-mart",
+      "displayName": "泡泡玛特 Pop Mart",
+      "aliases": ["Pop Mart", "泡泡玛特"],
+      "tickers": ["9992.HK"],
+      "mentions": [
+        {
+          "reportId": "202507",
+          "stance": "long",
+          "action": "持仓",
+          "quote": "与小米、恒瑞等并列，作为中国公司韧性案例。"
+        }
+      ]
+    },
+    {
+      "id": "laopu-gold",
+      "displayName": "老铺黄金 Laopu Gold",
+      "aliases": ["Laopu Gold", "老铺黄金"],
+      "tickers": ["1811.HK"],
+      "mentions": [
+        {
+          "reportId": "202507",
+          "stance": "long",
+          "action": "持仓",
+          "quote": "信中列举的中国多头代表性公司之一。"
+        }
+      ]
+    },
+    {
+      "id": "sany-heavy",
+      "displayName": "三一重工",
+      "aliases": ["Sany", "三一重工", "Sany Heavy Industry"],
+      "tickers": ["600031.SH"],
+      "mentions": [
+        {
+          "reportId": "202508",
+          "stance": "long",
+          "action": "核心持仓",
+          "quote": "核心持仓案例：未来数年盈利高增、估值约 12 倍 2026E PE；灯塔工厂与出海、管理层接班与国际化。"
+        },
+        {
+          "reportId": "202508",
+          "stance": "short",
+          "action": "历史交易",
+          "quote": "约五年前在下行周期曾做过盈利空头；约三年前转乐观、仓位由小到大，现为 A 股核心持仓之一。"
+        }
+      ]
+    },
+    {
+      "id": "kioxia",
+      "displayName": "铠侠 Kioxia",
+      "aliases": ["Kioxia", "铠侠"],
+      "tickers": ["285A.T"],
+      "mentions": [
+        {
+          "reportId": "202601",
+          "stance": "long",
+          "action": "贡献",
+          "quote": "1 月业绩贡献来源之一：存储涨价与组合在存储链条上的布局（日本）。"
+        }
+      ]
+    },
+    {
+      "id": "samsung-elec",
+      "displayName": "三星电子 Samsung Electronics",
+      "aliases": ["Samsung", "三星电子", "Samsung Electronics"],
+      "tickers": ["005930.KS"],
+      "mentions": [
+        {
+          "reportId": "202601",
+          "stance": "long",
+          "action": "贡献",
+          "quote": "存储价格上行带动，为 1 月重要贡献之一。"
+        },
+        {
+          "reportId": "202602",
+          "stance": "long",
+          "action": "贡献",
+          "quote": "DRAM/NAND 涨价加速，多头表现突出。"
+        }
+      ]
+    },
+    {
+      "id": "hanwha-aerospace",
+      "displayName": "韩华宇航 Hanwha Aerospace",
+      "aliases": ["Hanwha Aerospace", "韩华宇航"],
+      "tickers": ["012450.KS"],
+      "mentions": [
+        {
+          "reportId": "202601",
+          "stance": "long",
+          "action": "贡献",
+          "quote": "防务板块反弹与地缘背景下，为当月头部贡献之一。"
+        }
+      ]
+    },
+    {
+      "id": "three-circle",
+      "displayName": "三环集团（潮州三环）",
+      "aliases": ["Three-Circle", "三环集团", "Chaozhou Three-Circle", "潮州三环"],
+      "tickers": ["300408.SZ"],
+      "mentions": [
+        {
+          "reportId": "202601",
+          "stance": "long",
+          "action": "贡献",
+          "quote": "与紫金矿业等并列，作为中国工业/材料侧贡献。"
+        },
+        {
+          "reportId": "202602",
+          "stance": "long",
+          "action": "贡献",
+          "quote": "MLCC 链条定价与供需改善，多头表现好；科技供应链覆盖延伸至更多 A 股标的。"
+        }
+      ]
+    },
+    {
+      "id": "zijin-mining",
+      "displayName": "紫金矿业",
+      "aliases": ["Zijin", "紫金矿业", "Zijin Mining"],
+      "tickers": ["601899.SH", "2899.HK"],
+      "mentions": [
+        {
+          "reportId": "202601",
+          "stance": "long",
+          "action": "贡献",
+          "quote": "中国工业/资源侧多头，为 1 月多市场正贡献之一。"
+        }
+      ]
+    },
+    {
+      "id": "fenghua-adv-tech",
+      "displayName": "风华高科 Fenghua Advanced",
+      "aliases": ["Fenghua", "风华高科", "Fenghua Advanced Technology"],
+      "tickers": ["000636.SZ"],
+      "mentions": [
+        {
+          "reportId": "202602",
+          "stance": "long",
+          "action": "贡献",
+          "quote": "与三环一并作为 MLCC/电子元件链条多头贡献。"
+        }
+      ]
+    },
+    {
+      "id": "kawasaki-hi",
+      "displayName": "川崎重工 Kawasaki Heavy",
+      "aliases": ["Kawasaki", "川崎重工", "Kawasaki Heavy Industries"],
+      "tickers": ["7012.T"],
+      "mentions": [
+        {
+          "reportId": "202602",
+          "stance": "long",
+          "action": "贡献",
+          "quote": "业绩超预期与日本防务情绪改善，表现较好。"
+        }
+      ]
+    },
+    {
+      "id": "microsoft",
+      "displayName": "Microsoft",
+      "aliases": ["Microsoft", "微软", "Satya Nadella"],
+      "tickers": ["MSFT"],
+      "mentions": [
+        {
+          "reportId": "202510",
+          "stance": "thematic",
+          "action": "引用",
+          "quote": "AI 电力瓶颈语境下引用 CEO 关于 GPU 与电力接入困难的表述，非 necessarily 组合核心持仓披露。"
+        }
+      ]
+    },
+    {
+      "id": "openai",
+      "displayName": "OpenAI（主题）",
+      "aliases": ["OpenAI"],
+      "tickers": [],
+      "mentions": [
+        {
+          "reportId": "202510",
+          "stance": "thematic",
+          "action": "估值讨论",
+          "quote": "作为 AI 估值与预期超前于现金流的讨论案例。"
+        }
+      ]
+    }
+  ]
+}

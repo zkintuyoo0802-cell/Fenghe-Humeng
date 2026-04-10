@@ -1,0 +1,3998 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>风和投资-胡猛知识库</title>
+    <style id="kb-critical-fallback">
+      /* 不依赖 dashboard.css：资源缺失时仍能显示告警 */
+      #kb-asset-warning {
+        display: none;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 12px 16px;
+        background: #fef2f2;
+        border-bottom: 2px solid #ef4444;
+        color: #111;
+        font: 14px/1.55 system-ui, -apple-system, sans-serif;
+      }
+      #kb-asset-warning.show {
+        display: block;
+      }
+      #kb-asset-warning code {
+        background: #fee2e2;
+        padding: 0 4px;
+        border-radius: 3px;
+        font-size: 0.92em;
+      }
+    </style>
+    <style>
+:root {
+  --bg: #0f1419;
+  --surface: #1a2332;
+  --surface2: #243044;
+  --border: #2d3a4d;
+  --text: #e8edf4;
+  --muted: #8b9cb3;
+  --accent: #3d9aed;
+  --accent-dim: rgba(61, 154, 237, 0.15);
+  --good: #4ade80;
+  --warn: #fbbf24;
+  --font: "Segoe UI", system-ui, -apple-system, sans-serif;
+  --radius: 10px;
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 15px;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.app-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, var(--surface) 0%, var(--bg) 100%);
+}
+
+.app-header h1 {
+  margin: 0 0 0.35rem;
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.app-header .subtitle {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.view-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.view-tab {
+  padding: 0.45rem 0.9rem;
+  font-size: 0.88rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--muted);
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.view-tab:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.view-tab.active {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(240px, 280px) 1fr;
+  grid-template-rows: auto 1fr;
+  min-height: calc(100vh - 88px);
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sidebar {
+  padding: 1rem 1rem 1.5rem;
+  border-right: 1px solid var(--border);
+  background: var(--surface);
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+
+.search-wrap {
+  margin-bottom: 1rem;
+}
+
+.search-wrap label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin-bottom: 0.4rem;
+}
+
+input[type="search"] {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 1rem;
+}
+
+input[type="search"]::placeholder {
+  color: var(--muted);
+}
+
+input[type="search"]:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-dim);
+}
+
+.category-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin: 0.5rem 0 0.5rem;
+}
+
+.category-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--muted);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.chip:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.chip.active {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.main {
+  padding: 1rem 1.25rem 2rem;
+  overflow: auto;
+}
+
+.logic-strip {
+  margin-bottom: 1.25rem;
+  padding: 0.85rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.logic-strip strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.logic-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.logic-flow .flow-item {
+  padding: 0.2rem 0.5rem;
+  background: var(--bg);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.logic-flow .arrow {
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.stats-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.stats-bar .count {
+  color: var(--good);
+  font-weight: 600;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+  box-shadow: var(--shadow);
+  transition: border-color 0.15s;
+}
+
+.card:hover {
+  border-color: #3d4f66;
+}
+
+.card h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.card .meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.6rem;
+}
+
+.badge {
+  font-size: 0.7rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  background: var(--surface2);
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+
+.badge.logic {
+  color: var(--warn);
+  border-color: rgba(251, 191, 36, 0.35);
+}
+
+.card p.summary {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.card .aliases {
+  margin-top: 0.65rem;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.card .aliases span {
+  display: inline-block;
+  margin-right: 0.35rem;
+  margin-bottom: 0.2rem;
+  padding: 0.1rem 0.35rem;
+  background: var(--bg);
+  border-radius: 4px;
+  border: 1px solid var(--border);
+}
+
+.card .see-also {
+  margin-top: 0.65rem;
+  font-size: 0.78rem;
+  color: var(--accent);
+}
+
+.card mark {
+  background: rgba(61, 154, 237, 0.35);
+  color: inherit;
+  padding: 0 0.1rem;
+}
+
+.empty-state {
+  padding: 2rem;
+  text-align: center;
+  color: var(--muted);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+}
+
+.footer-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+button.export {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface2);
+  color: var(--text);
+  cursor: pointer;
+}
+
+button.export:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.site-footer {
+  margin-top: 2rem;
+  padding: 1.25rem 1rem;
+  border-top: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.site-footer-title {
+  margin: 0 0 0.65rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text);
+}
+
+.site-footer-list {
+  margin: 0 0 0.85rem;
+  padding-left: 1.25rem;
+}
+
+.site-footer-list li {
+  margin-bottom: 0.45rem;
+}
+
+.site-footer code {
+  font-size: 0.82em;
+  padding: 0.1rem 0.35rem;
+  background: var(--bg);
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.site-footer-meta {
+  margin: 0;
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
+
+.monthly-intro {
+  margin-bottom: 1rem;
+  padding: 1rem 1.1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.monthly-intro-lead {
+  margin: 0 0 0.5rem;
+  color: var(--text);
+}
+
+.monthly-intro-note {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.monthly-table-wrap {
+  overflow-x: auto;
+  margin-bottom: 1rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+.monthly-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.monthly-table th,
+.monthly-table td {
+  padding: 0.5rem 0.65rem;
+  text-align: right;
+  border-bottom: 1px solid var(--border);
+}
+
+.monthly-table th:first-child,
+.monthly-table td:first-child {
+  text-align: left;
+}
+
+.monthly-table thead th {
+  background: var(--surface2);
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.monthly-table tbody tr:hover {
+  background: rgba(61, 154, 237, 0.06);
+}
+
+.monthly-metrics .badge {
+  font-size: 0.72rem;
+}
+
+.monthly-themes {
+  margin: 0;
+  padding-left: 1.2rem;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.monthly-themes li {
+  margin-bottom: 0.35rem;
+}
+
+.bridge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.bridge-chip {
+  padding: 0.25rem 0.55rem;
+  font-size: 0.78rem;
+  border-radius: 999px;
+  border: 1px dashed var(--border);
+  background: var(--bg);
+  color: var(--accent);
+  cursor: pointer;
+}
+
+.bridge-chip:hover {
+  border-color: var(--accent);
+  border-style: solid;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.stock-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  max-height: min(70vh, 520px);
+  overflow-y: auto;
+  padding-right: 0.25rem;
+}
+
+.stock-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  text-align: left;
+  padding: 0.5rem 0.65rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 0.86rem;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.stock-list-item:hover {
+  border-color: var(--accent);
+}
+
+.stock-list-item-active {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+
+.stock-list-name {
+  font-weight: 500;
+}
+
+.stock-list-meta {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.stock-mini-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.stock-mini-chip {
+  padding: 0.2rem 0.5rem;
+  font-size: 0.78rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface2);
+  color: var(--good);
+  cursor: pointer;
+}
+
+.stock-mini-chip:hover {
+  border-color: var(--good);
+}
+
+.stock-detail {
+  margin-top: 0.5rem;
+}
+
+.stock-detail-head {
+  margin-bottom: 1rem;
+}
+
+.stock-detail-title {
+  margin: 0 0 0.35rem;
+  font-size: 1.2rem;
+}
+
+.stock-detail-sub {
+  margin: 0.15rem 0;
+  font-size: 0.85rem;
+}
+
+.stock-timeline-table td {
+  vertical-align: top;
+}
+
+.stock-td-quote {
+  text-align: left;
+  max-width: 32rem;
+  vertical-align: top;
+}
+
+.stock-quote {
+  margin: 0;
+  padding: 0.35rem 0 0.35rem 0.75rem;
+  border-left: 3px solid var(--accent);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--text);
+}
+
+.stance-tag {
+  font-size: 0.72rem;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  text-transform: lowercase;
+}
+
+.stance-long {
+  background: rgba(74, 222, 128, 0.12);
+  color: var(--good);
+  border: 1px solid rgba(74, 222, 128, 0.35);
+}
+
+.stance-short {
+  background: rgba(248, 113, 113, 0.12);
+  color: #f87171;
+  border: 1px solid rgba(248, 113, 113, 0.35);
+}
+
+.stance-other {
+  background: var(--surface2);
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+
+button.linkish {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--accent);
+  cursor: pointer;
+  font-size: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+button.linkish:hover {
+  color: var(--text);
+}
+
+/* 月报：MTD / YTD 图表 */
+.monthly-chart-wrap {
+  margin: 1rem 0 1.25rem;
+  padding: 1rem 1.1rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface2);
+}
+
+.chart-section .chart-title {
+  margin: 0 0 0.5rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.chart-section .chart-title:not(:first-child) {
+  margin-top: 1.25rem;
+}
+
+.mtd-highlight-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.25rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 0.65rem;
+}
+
+.mtd-highlight-strip strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.mtd-chart-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  min-height: 120px;
+  padding: 0.25rem 0;
+}
+
+.mtd-bar-col {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.mtd-bar-inner {
+  width: 100%;
+  max-width: 22px;
+  height: 88px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-radius: 4px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.mtd-bar {
+  width: 100%;
+  min-height: 2px;
+  border-radius: 3px;
+}
+
+.mtd-bar.pos {
+  background: linear-gradient(180deg, var(--good), rgba(74, 222, 128, 0.55));
+}
+
+.mtd-bar.neg {
+  background: linear-gradient(180deg, #f87171, rgba(248, 113, 113, 0.55));
+}
+
+.mtd-bar-label {
+  font-size: 0.65rem;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.2;
+}
+
+.ytd-chart-svg-wrap {
+  margin-top: 0.35rem;
+}
+
+.ytd-svg {
+  width: 100%;
+  height: 72px;
+  display: block;
+}
+
+.ytd-x-labels {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.15rem;
+  font-size: 0.62rem;
+  color: var(--muted);
+  margin-top: 0.25rem;
+}
+
+.ytd-x-labels span {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 随笔卡片 → 个股 */
+.fw-stock-chip {
+  padding: 0.2rem 0.55rem;
+  font-size: 0.78rem;
+  border-radius: 6px;
+  border: 1px solid var(--accent);
+  background: var(--accent-dim);
+  color: var(--accent);
+  cursor: pointer;
+}
+
+.fw-stock-chip:hover {
+  border-color: var(--text);
+  color: var(--text);
+}
+
+/* 个股表 → 框架词条 */
+.kw-open-chip {
+  display: inline-block;
+  margin: 0.15rem 0.35rem 0 0;
+  padding: 0.12rem 0.45rem;
+  font-size: 0.72rem;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--accent);
+  cursor: pointer;
+}
+
+.kw-open-chip:hover {
+  border-color: var(--accent);
+}
+
+.stock-td-kw {
+  max-width: 14rem;
+  vertical-align: top;
+}
+
+</style>
+  </head>
+  <body>
+    <div id="kb-asset-warning" role="alert" hidden>
+      <strong>无法加载样式或数据。</strong>
+      常见原因：① 只复制了单个 HTML，未带上同级的 <code>css/</code>、<code>js/</code> 文件夹；② ZIP 未完整解压或路径被移动。
+      请把<strong>整个</strong>知识库文件夹解压到本地，再双击其中的 <code>index.html</code>。
+      若需「单文件」转发，请使用同目录下的 <code>index.standalone.html</code>（生成方式见页脚说明）。
+    </div>
+    <header class="app-header">
+      <h1 id="meta-title">风和投资-胡猛知识库</h1>
+      <p class="subtitle" id="meta-subtitle"></p>
+      <nav class="view-tabs" id="view-tabs" aria-label="视图切换">
+        <button type="button" class="view-tab active" data-view="framework" aria-selected="true">
+          随笔研究框架
+        </button>
+        <button type="button" class="view-tab" data-view="monthly" aria-selected="false">
+          FHA 月报观点与业绩
+        </button>
+        <button type="button" class="view-tab" data-view="stocks" aria-selected="false">
+          个股观点与操作
+        </button>
+      </nav>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar-framework" aria-label="框架筛选">
+        <div class="search-wrap">
+          <label for="search">关键词（支持多词，空格 AND）</label>
+          <input
+            id="search"
+            type="search"
+            placeholder="例如：ROE、做空、M2、3T、确定性…"
+            autocomplete="off"
+          />
+        </div>
+        <p class="category-label">分类</p>
+        <div id="category-chips" class="category-chips"></div>
+      </aside>
+
+      <aside class="sidebar hidden" id="sidebar-monthly" aria-label="月报筛选">
+        <div class="search-wrap">
+          <label for="search-monthly">检索月报（观点 / 业绩 / 对照标签）</label>
+          <input
+            id="search-monthly"
+            type="search"
+            placeholder="例如：止损、AI、gross、3D、恒瑞…"
+            autocomplete="off"
+          />
+        </div>
+        <p class="category-label">年份</p>
+        <div id="year-chips" class="category-chips"></div>
+      </aside>
+
+      <aside class="sidebar hidden" id="sidebar-stocks" aria-label="个股筛选">
+        <div class="search-wrap">
+          <label for="search-stock">检索个股（名称 / 代码 / 别名）</label>
+          <input
+            id="search-stock"
+            type="search"
+            placeholder="例如：恒瑞、三星、600276、ALGN…"
+            autocomplete="off"
+          />
+        </div>
+        <p class="category-label">标的列表</p>
+        <div id="stock-list" class="stock-list" role="listbox" aria-label="个股列表"></div>
+      </aside>
+
+      <main class="main">
+        <div id="panel-framework">
+        <div class="logic-strip" role="region" aria-label="逻辑链摘要">
+          <strong>逻辑链摘要：</strong>
+          认知与不确定性 → 不预测市场 / 宏观不驱动组合 → 自下而上多空 →
+          <strong>3D（ROE / 5M·结构周期·外延 / 情绪估值）</strong> +
+          <strong>3T</strong> → 三低组合 + 流程（LOGOS、止损）→ 确定性优先
+          <div class="logic-flow" aria-hidden="true">
+            <span class="flow-item">D1 ROE</span>
+            <span class="arrow">→</span>
+            <span class="flow-item">D2 5M×结构/周期</span>
+            <span class="arrow">→</span>
+            <span class="flow-item">D3 估值情绪</span>
+            <span class="arrow">|</span>
+            <span class="flow-item">3T 时间</span>
+            <span class="arrow">→</span>
+            <span class="flow-item">空头 M2/M3 · 双杀</span>
+          </div>
+        </div>
+
+        <div class="stats-bar">
+          <span>显示 <span class="count" id="stat-count">0</span> / <span id="stat-total">0</span> 条</span>
+          <div class="footer-actions">
+            <button type="button" class="export" id="export-json">导出当前结果为 JSON</button>
+          </div>
+        </div>
+
+        <div id="card-grid" class="card-grid"></div>
+        </div>
+
+        <div id="panel-monthly" class="hidden">
+          <div class="monthly-intro" id="monthly-intro"></div>
+          <div id="monthly-chart-wrap" class="monthly-chart-wrap" aria-label="月度收益图表"></div>
+          <div class="monthly-table-wrap">
+            <table class="monthly-table" id="monthly-table" aria-label="月度业绩一览">
+              <thead>
+                <tr>
+                  <th>期间</th>
+                  <th>MTD</th>
+                  <th>YTD</th>
+                  <th>TTM</th>
+                  <th>杠杆</th>
+                  <th>AUM (US$m)</th>
+                </tr>
+              </thead>
+              <tbody id="monthly-table-body"></tbody>
+            </table>
+          </div>
+          <div class="stats-bar">
+            <span>月报 <span class="count" id="monthly-stat-count">0</span> / <span id="monthly-stat-total">0</span> 期</span>
+            <div class="footer-actions">
+              <button type="button" class="export" id="export-monthly-json">导出当前筛选月报 JSON</button>
+            </div>
+          </div>
+          <div id="monthly-card-grid" class="card-grid monthly-card-grid"></div>
+        </div>
+
+        <div id="panel-stocks" class="hidden">
+          <div class="stock-panel-intro" id="stock-panel-intro"></div>
+          <div class="stats-bar">
+            <span>已选标的的历史表述 <span class="count" id="stock-mention-count">0</span> 条</span>
+            <div class="footer-actions">
+              <button type="button" class="export" id="export-stock-json">导出当前个股 JSON</button>
+            </div>
+          </div>
+          <div id="stock-detail" class="stock-detail"></div>
+        </div>
+
+        <footer class="site-footer" id="site-footer">
+          <p class="site-footer-title">离线使用与分享</p>
+          <ul class="site-footer-list">
+            <li><strong>推荐转发（单文件）：</strong>运行 <code>python scripts/build-standalone.py</code> 生成 <code>index.standalone.html</code>，只发该文件即可；内联样式与数据，双击即可用，不依赖子文件夹。</li>
+            <li><strong>文件夹版：</strong>将整个 <code>fenghe-dashboard</code> 打 ZIP（须包含 <code>css/</code>、<code>js/</code>、<code>data/</code>），解压后双击 <code>index.html</code>。勿只复制单个 HTML。</li>
+            <li><strong>可选在线托管：</strong>将该文件夹上传到 GitHub Pages、Cloudflare Pages、Netlify 等任意静态托管，即可通过网址访问（HTTP 模式下需 <code>data/keywords.json</code> 与 <code>data/monthly-insights.json</code>）。</li>
+          </ul>
+          <p class="site-footer-meta">数据：<code>scripts/embed-data.py</code> 合并 JSON → <code>js/data.js</code>。单文件版：<code>embed-data.py</code> 后运行 <code>python scripts/build-standalone.py</code>。离线双击 <code>index.html</code> 时浏览器不允许用 <code>fetch</code> 读本地 JSON，故必须存在已嵌入数据的 <code>js/data.js</code> 或使用 <code>index.standalone.html</code>。</p>
+        </footer>
+      </main>
+    </div>
+
+    <script>
+window.__FENGHE_KB__ = {
+  "meta": {
+    "title": "风和投资随笔 · 逻辑关键词检索",
+    "source": "《风和投资随笔1》胡猛 — 框架整理版",
+    "version": "1.0.0"
+  },
+  "categories": [
+    {
+      "id": "frame-3d5m3t",
+      "label": "框架 · 3D5M3T",
+      "order": 1
+    },
+    {
+      "id": "philosophy",
+      "label": "哲学与认知",
+      "order": 2
+    },
+    {
+      "id": "portfolio",
+      "label": "组合与风险",
+      "order": 3
+    },
+    {
+      "id": "short",
+      "label": "做空与对冲",
+      "order": 4
+    },
+    {
+      "id": "process",
+      "label": "流程与执行",
+      "order": 5
+    },
+    {
+      "id": "sector",
+      "label": "行业与确定性",
+      "order": 6
+    },
+    {
+      "id": "metaphor",
+      "label": "人物与比喻",
+      "order": 7
+    }
+  ],
+  "entries": [
+    {
+      "id": "d1",
+      "category": "frame-3d5m3t",
+      "title": "D1 · ROE 与内延成长",
+      "aliases": [
+        "D1",
+        "ROE",
+        "内延",
+        "匀速跑",
+        "硬核ROE"
+      ],
+      "tags": [
+        "3D",
+        "基本面",
+        "价值"
+      ],
+      "summary": "股价驱动之一：公司价值内延成长，以 ROE 为核心；书中比喻为「匀速跑」。",
+      "logicRole": "3D 第一层",
+      "seeAlso": [
+        "d2",
+        "d3",
+        "value-anchor"
+      ]
+    },
+    {
+      "id": "d2",
+      "category": "frame-3d5m3t",
+      "title": "D2 · 价值外延（结构 / 周期）",
+      "aliases": [
+        "D2",
+        "外延",
+        "结构变化",
+        "周期变化",
+        "变速跑",
+        "5M"
+      ],
+      "tags": [
+        "3D",
+        "5M",
+        "边际"
+      ],
+      "summary": "价值外延变化分结构与周期两类，由 5M 框架拆解分析；相对 D1 为「变速跑」。",
+      "logicRole": "3D 第二层 → 接 5M",
+      "seeAlso": [
+        "m2-share",
+        "m3-margin",
+        "structural-short",
+        "cyclical-short"
+      ]
+    },
+    {
+      "id": "d3",
+      "category": "frame-3d5m3t",
+      "title": "D3 · 情绪与估值（狗的驱动）",
+      "aliases": [
+        "D3",
+        "情绪",
+        "估值",
+        "狗",
+        "Mr Market"
+      ],
+      "tags": [
+        "3D",
+        "市场",
+        "定价"
+      ],
+      "summary": "情绪与估值驱动短期定价；与基本面「人」的叙事并列，需结合 3T 理解。",
+      "logicRole": "3D 第三层",
+      "seeAlso": [
+        "no-predict-market",
+        "t-framework"
+      ]
+    },
+    {
+      "id": "5m-fisher",
+      "category": "frame-3d5m3t",
+      "title": "5M · 费雪十五点归纳",
+      "aliases": [
+        "5M",
+        "费雪",
+        "菲利普费雪",
+        "深挖",
+        "赛道",
+        "竞争",
+        "成本结构"
+      ],
+      "tags": [
+        "5M",
+        "研究深度"
+      ],
+      "summary": "作者将费雪 15 点归纳为 5 个 M，用于第二重境界的公司深挖（商业模式、管理层、赛道等）。",
+      "logicRole": "支撑 D2",
+      "seeAlso": [
+        "m2-share",
+        "m3-margin",
+        "logos"
+      ]
+    },
+    {
+      "id": "m2-share",
+      "category": "frame-3d5m3t",
+      "title": "M2 · 市场份额（风和用语）",
+      "aliases": [
+        "M2",
+        "市场份额",
+        "份额",
+        "结构性做空"
+      ],
+      "tags": [
+        "5M",
+        "做空",
+        "结构"
+      ],
+      "summary": "做空语境下：M2 指市场份额；偏结构性空头——丢份额、商业模式/管理层/产品结构问题等。",
+      "logicRole": "结构性做空抓手",
+      "seeAlso": [
+        "structural-short",
+        "dual-kill"
+      ]
+    },
+    {
+      "id": "m3-margin",
+      "category": "frame-3d5m3t",
+      "title": "M3 · 利润率（风和用语）",
+      "aliases": [
+        "M3",
+        "利润率",
+        "利润率下滑",
+        "周期性做空"
+      ],
+      "tags": [
+        "5M",
+        "做空",
+        "周期"
+      ],
+      "summary": "做空语境下：M3 指利润率；偏周期性空头——供需逆转、利润率下行。",
+      "logicRole": "周期性做空抓手",
+      "seeAlso": [
+        "cyclical-short",
+        "dual-kill"
+      ]
+    },
+    {
+      "id": "t-framework",
+      "category": "frame-3d5m3t",
+      "title": "3T · 时间框架（T1.5 / T2 / T3）",
+      "aliases": [
+        "3T",
+        "T1.5",
+        "T2",
+        "T3",
+        "catalyst",
+        "时间框架",
+        "边际变化"
+      ],
+      "tags": [
+        "时间",
+        "假设"
+      ],
+      "summary": "协助理解 D2 与 D3：T1.5 偏短期 catalyst；T3 长期因素多折入估值区间，假设多则易错。",
+      "logicRole": "横切 3D",
+      "seeAlso": [
+        "patrick",
+        "d3"
+      ]
+    },
+    {
+      "id": "fenghe-philosophy",
+      "category": "philosophy",
+      "title": "风和哲学 · 逆短顺长",
+      "aliases": [
+        "逆短期",
+        "顺长期",
+        "基本面之势",
+        "华尔街",
+        "预期"
+      ],
+      "tags": [
+        "总纲"
+      ],
+      "summary": "逆短期基本面之势，顺长期基本面之势；利用市场短期过度反应。",
+      "logicRole": "顶层原则",
+      "seeAlso": [
+        "certainty",
+        "no-predict-market"
+      ],
+      "relatedStockIds": [
+        "jd",
+        "samsung-elec"
+      ]
+    },
+    {
+      "id": "certainty",
+      "category": "philosophy",
+      "title": "确定性 · 投资唯一标准",
+      "aliases": [
+        "确定性",
+        "大概率",
+        "客观确定",
+        "主观不确定"
+      ],
+      "tags": [
+        "认知",
+        "标准"
+      ],
+      "summary": "确定性是投资的唯一标准，而非潜在回报大小；警惕「大概率」口头禅。",
+      "logicRole": "筛选标准",
+      "seeAlso": [
+        "barrier",
+        "internet-caution"
+      ]
+    },
+    {
+      "id": "uncertainty",
+      "category": "philosophy",
+      "title": "不确定性 · 常态与系统性风险",
+      "aliases": [
+        "不确定性",
+        "系统性风险",
+        "风险的系统性",
+        "常态"
+      ],
+      "tags": [
+        "风险",
+        "宏观"
+      ],
+      "summary": "不确定性是常态；系统性风险指风险的系统性扩散，非「系统本身有风险」偷换概念。",
+      "logicRole": "认知底座",
+      "seeAlso": [
+        "pm-risk-manager"
+      ]
+    },
+    {
+      "id": "know-yourself",
+      "category": "philosophy",
+      "title": "投资首要 · 了解自己",
+      "aliases": [
+        "了解自己",
+        "四性",
+        "逻辑性",
+        "系统性",
+        "实践性",
+        "历史性",
+        "性格",
+        "知识边界"
+      ],
+      "tags": [
+        "投资者适配"
+      ],
+      "summary": "了解自己的思维、性格、知识边界与资本属性，才能发展出适配的投资哲学。",
+      "logicRole": "前置条件",
+      "seeAlso": []
+    },
+    {
+      "id": "hunter-farmer",
+      "category": "metaphor",
+      "title": "猎人 vs 农民",
+      "aliases": [
+        "猎人",
+        "农民",
+        "轮动",
+        "top down",
+        "一亩三分田"
+      ],
+      "tags": [
+        "方法论",
+        "亚洲市场"
+      ],
+      "summary": "猎人追宏观与风口；农民长期覆盖固定行业与品种，按周期多空交易。风和自比农民。",
+      "logicRole": "研究组织方式",
+      "seeAlso": [
+        "no-macro",
+        "bottom-up"
+      ]
+    },
+    {
+      "id": "three-low",
+      "category": "portfolio",
+      "title": "三低 · 组合立命之本",
+      "aliases": [
+        "三低",
+        "低杠杆",
+        "低相关",
+        "低集中度",
+        "分散",
+        "伪分散"
+      ],
+      "tags": [
+        "组合",
+        "风控"
+      ],
+      "summary": "低杠杆、低相关、低集中度；跨市场跨行业，避免单一市场同向波动假分散。",
+      "logicRole": "组合结构",
+      "seeAlso": [
+        "gross-net",
+        "hit-rate"
+      ]
+    },
+    {
+      "id": "gross-net",
+      "category": "portfolio",
+      "title": "总头寸与净头寸 · 真正风险",
+      "aliases": [
+        "总头寸",
+        "净头寸",
+        "low net",
+        "真正风险"
+      ],
+      "tags": [
+        "杠杆",
+        "风控"
+      ],
+      "summary": "强调真正风险在总头寸暴露；多空结合控制净头寸与波动。",
+      "logicRole": "风险度量",
+      "seeAlso": [
+        "three-low"
+      ]
+    },
+    {
+      "id": "pm-risk-manager",
+      "category": "portfolio",
+      "title": "PM 定位 · 风险管理者",
+      "aliases": [
+        "风险管理者",
+        "寄生虫",
+        "优秀企业",
+        "读人",
+        "权重"
+      ],
+      "tags": [
+        "组织",
+        "角色"
+      ],
+      "summary": "作者自定位为风险管理者而非传统多头投资者；发掘确定性交给团队，管理不确定性是 PM 工作。",
+      "logicRole": "决策分工",
+      "seeAlso": [
+        "to-team",
+        "hit-rate"
+      ]
+    },
+    {
+      "id": "value-anchor",
+      "category": "portfolio",
+      "title": "价值锚 · 现金 / 可变现资产 / 未来现金",
+      "aliases": [
+        "价值",
+        "现金",
+        "可变现",
+        "硬核ROE",
+        "PB",
+        "PE",
+        "价值交易者"
+      ],
+      "tags": [
+        "估值",
+        "ROE"
+      ],
+      "summary": "价值 = 现金 + 可变现资产 + 创造未来现金的能力；实务重 ROE+PB，偏保守估值与交易。",
+      "logicRole": "定价与交易",
+      "seeAlso": [
+        "d1"
+      ],
+      "relatedStockIds": [
+        "futu",
+        "hkex"
+      ]
+    },
+    {
+      "id": "hit-rate",
+      "category": "portfolio",
+      "title": "命中率 · 亏损率 · 权重",
+      "aliases": [
+        "命中率",
+        "65%",
+        "止损",
+        "亏损率",
+        "权重管理"
+      ],
+      "tags": [
+        "业绩拆解"
+      ],
+      "summary": "回报来自控制命中率、控制错单亏损、控制亏损方权重；严格止损与怀疑文化。",
+      "logicRole": "业绩机制",
+      "seeAlso": [
+        "stop-loss",
+        "three-low"
+      ]
+    },
+    {
+      "id": "party-theory",
+      "category": "short",
+      "title": "宴席理论 · 天下没有不散的宴席",
+      "aliases": [
+        "宴席",
+        "大party",
+        "狂欢",
+        "泡沫",
+        "做空理论"
+      ],
+      "tags": [
+        "做空",
+        "周期"
+      ],
+      "summary": "识别全行业/全市场狂欢后的散场；与做多「找鹰」对照，用于空头主题与环境判断。",
+      "logicRole": "做空视角",
+      "seeAlso": [
+        "step-on-bad",
+        "short-earnings"
+      ],
+      "relatedStockIds": [
+        "leeco",
+        "netease"
+      ]
+    },
+    {
+      "id": "step-on-bad",
+      "category": "short",
+      "title": "踩烂理论 · 变差还可更烂",
+      "aliases": [
+        "踩烂",
+        "更烂",
+        "估值便宜",
+        "盈利恶化",
+        "静态估值"
+      ],
+      "tags": [
+        "做空",
+        "估值陷阱"
+      ],
+      "summary": "已烂企业可继续更烂；跌价未必见底，盈利下行可致估值越「便宜」越亏。",
+      "logicRole": "做空持有逻辑",
+      "seeAlso": [
+        "m3-margin",
+        "party-theory"
+      ],
+      "relatedStockIds": [
+        "weichai"
+      ]
+    },
+    {
+      "id": "structural-short",
+      "category": "short",
+      "title": "结构性做空",
+      "aliases": [
+        "结构性",
+        "商业模式",
+        "管理层",
+        "丢份额"
+      ],
+      "tags": [
+        "做空",
+        "M2"
+      ],
+      "summary": "行业未必差，但公司层面出问题；与 M2（份额）线索强相关。",
+      "logicRole": "空头分类",
+      "seeAlso": [
+        "m2-share",
+        "dual-kill"
+      ]
+    },
+    {
+      "id": "cyclical-short",
+      "category": "short",
+      "title": "周期性做空",
+      "aliases": [
+        "周期性",
+        "供需",
+        "行业周期",
+        "科技周期"
+      ],
+      "tags": [
+        "做空",
+        "M3"
+      ],
+      "summary": "行业供需与利润率周期逆转；与 M3 线索强相关（如镜头、赌场等案例叙事）。",
+      "logicRole": "空头分类",
+      "seeAlso": [
+        "m3-margin",
+        "dual-kill"
+      ],
+      "relatedStockIds": [
+        "largan",
+        "sunny-optical",
+        "wynn-macau"
+      ]
+    },
+    {
+      "id": "dual-kill",
+      "category": "short",
+      "title": "盈利与估值双杀",
+      "aliases": [
+        "双杀",
+        "下调预期",
+        "持续下调"
+      ],
+      "tags": [
+        "做空",
+        "结果"
+      ],
+      "summary": "风和偏好的空头结果：盈利预期持续下调带来估值与盈利双杀；强调「持续」才动摇多头。",
+      "logicRole": "空头收益机制",
+      "seeAlso": [
+        "short-earnings",
+        "m2-share",
+        "m3-margin"
+      ]
+    },
+    {
+      "id": "short-earnings",
+      "category": "short",
+      "title": "做空对象 · 持续下调的盈利预期",
+      "aliases": [
+        "盈利预期",
+        "下调",
+        "造假",
+        "高估"
+      ],
+      "tags": [
+        "做空",
+        "选股"
+      ],
+      "summary": "主策略非依赖造假或单纯高估；核心是未来盈利预期持续下调，空头才有坚持理由。",
+      "logicRole": "空头原则",
+      "seeAlso": [
+        "dual-kill",
+        "party-theory"
+      ],
+      "relatedStockIds": [
+        "netease",
+        "gsx"
+      ]
+    },
+    {
+      "id": "pair-trade",
+      "category": "short",
+      "title": "Pair Trade · 行业对冲的局限",
+      "aliases": [
+        "Pair Trade",
+        "配对",
+        "行业对冲",
+        "gross"
+      ],
+      "tags": [
+        "对冲",
+        "亚洲"
+      ],
+      "summary": "作者认为在亚洲 pair trade 常多空对冲掉行业β、gross 膨胀；风和更偏自下而上独立空头。",
+      "logicRole": "对冲辨析",
+      "seeAlso": [
+        "index-short",
+        "true-hedge-fund"
+      ]
+    },
+    {
+      "id": "index-short",
+      "category": "short",
+      "title": "空指数 · 与市场判断",
+      "aliases": [
+        "空指数",
+        "对冲指数",
+        "市场方向"
+      ],
+      "tags": [
+        "对冲"
+      ],
+      "summary": "空指数易沦为方向判断；作者倾向摒弃，改个股空头。",
+      "logicRole": "对冲辨析",
+      "seeAlso": [
+        "no-predict-market"
+      ]
+    },
+    {
+      "id": "true-hedge-fund",
+      "category": "short",
+      "title": "真正的对冲基金 · 低相关 + 个股多空",
+      "aliases": [
+        "对冲基金",
+        "阿尔法",
+        "多空",
+        "矛盾组合"
+      ],
+      "tags": [
+        "组合哲学"
+      ],
+      "summary": "组合充满矛盾但低相关；长期不问牛熊地做自下而上个股做空与做多。",
+      "logicRole": "策略定义",
+      "seeAlso": [
+        "three-low",
+        "pair-trade"
+      ]
+    },
+    {
+      "id": "no-predict-market",
+      "category": "process",
+      "title": "不预测市场",
+      "aliases": [
+        "不预测",
+        "市场预测",
+        "30%",
+        "净头寸波动"
+      ],
+      "tags": [
+        "流程",
+        "纪律"
+      ],
+      "summary": "2018 起明确原则：预测对错带来组合偏见与高相关；以稳定低相关多空应对。",
+      "logicRole": "组合纪律",
+      "seeAlso": [
+        "no-macro",
+        "bottom-up"
+      ]
+    },
+    {
+      "id": "no-macro",
+      "category": "process",
+      "title": "宏观与投资 · 无招胜有招",
+      "aliases": [
+        "宏观",
+        "自上而下",
+        "自相矛盾",
+        "不完美组合"
+      ],
+      "tags": [
+        "宏观"
+      ],
+      "summary": "宏观难题且误判代价大；组合可表面矛盾，用行业与市场多元平衡。",
+      "logicRole": "排除法",
+      "seeAlso": [
+        "no-predict-market",
+        "hunter-farmer"
+      ]
+    },
+    {
+      "id": "bottom-up",
+      "category": "process",
+      "title": "自下而上",
+      "aliases": [
+        "自下而上",
+        "个股",
+        "多空机会"
+      ],
+      "tags": [
+        "研究"
+      ],
+      "summary": "长期维持相对稳定的多空机会集，不依赖宏观牛熊判断。",
+      "logicRole": "研究路径",
+      "seeAlso": [
+        "no-predict-market"
+      ]
+    },
+    {
+      "id": "logos",
+      "category": "process",
+      "title": "LOGOS · 研究 checklist",
+      "aliases": [
+        "LOGOS",
+        "checklist",
+        "尽职调查",
+        "慢投资"
+      ],
+      "tags": [
+        "流程",
+        "系统"
+      ],
+      "summary": "投资决策系统与清单，训练全面思考、找盲点；配合慢投资与纪律。",
+      "logicRole": "研究品质",
+      "seeAlso": [
+        "5m-fisher",
+        "stop-loss"
+      ]
+    },
+    {
+      "id": "stop-loss",
+      "category": "process",
+      "title": "止损 · 再思考机制",
+      "aliases": [
+        "止损",
+        "退菜",
+        "怀疑",
+        "怀疑企业",
+        "怀疑市场"
+      ],
+      "tags": [
+        "纪律"
+      ],
+      "summary": "止损不仅为控亏，更为倒逼重新审视；与怀疑文化绑定。",
+      "logicRole": "风控动作",
+      "seeAlso": [
+        "hit-rate",
+        "pm-risk-manager"
+      ]
+    },
+    {
+      "id": "barrier",
+      "category": "sector",
+      "title": "研究门槛 · 科技医疗",
+      "aliases": [
+        "门槛",
+        "科技硬件",
+        "医疗",
+        "半导体",
+        "toB",
+        "能见度"
+      ],
+      "tags": [
+        "行业",
+        "确定性"
+      ],
+      "summary": "偏好研究门槛高、toB、订单与盈利能见度强的领域；与确定性标准一致。",
+      "logicRole": "赛道选择",
+      "seeAlso": [
+        "internet-caution",
+        "certainty"
+      ]
+    },
+    {
+      "id": "internet-caution",
+      "category": "sector",
+      "title": "互联网 / 消费 · 谨慎",
+      "aliases": [
+        "互联网",
+        "消费",
+        "toC",
+        "拥挤",
+        "主观确定"
+      ],
+      "tags": [
+        "行业",
+        "不确定性"
+      ],
+      "summary": "门槛低、信息噪声大、商业模式与份额主观「确定」幻觉强；风和配置少的原因梳理。",
+      "logicRole": "反面教材",
+      "seeAlso": [
+        "certainty",
+        "barrier"
+      ],
+      "relatedStockIds": [
+        "gsx"
+      ]
+    },
+    {
+      "id": "mainstream-crowded",
+      "category": "sector",
+      "title": "主流品种 vs 拥挤品种",
+      "aliases": [
+        "主流",
+        "拥挤",
+        "铜与金",
+        "独立判断"
+      ],
+      "tags": [
+        "定价",
+        "从众"
+      ],
+      "summary": "风险来自品质与估值两端；主流与拥挤不必然更安全，关键在独立鉴别能力。",
+      "logicRole": "标的选择",
+      "seeAlso": [
+        "value-anchor"
+      ]
+    },
+    {
+      "id": "patrick",
+      "category": "metaphor",
+      "title": "Patrick 案例 · 假设与边际",
+      "aliases": [
+        "Patrick",
+        "假设",
+        "边际变化",
+        "priced in",
+        "简单"
+      ],
+      "tags": [
+        "案例",
+        "方法论"
+      ],
+      "summary": "成功投资：假设极少或极智慧；聚焦关键变量边际变化与 T1.5 catalyst。",
+      "logicRole": "研究范例",
+      "seeAlso": [
+        "t-framework",
+        "certainty"
+      ]
+    },
+    {
+      "id": "to-team",
+      "category": "metaphor",
+      "title": "To my team · CIO 工作方式",
+      "aliases": [
+        "改作业",
+        "横向选择",
+        "矛与盾",
+        "不解题"
+      ],
+      "tags": [
+        "管理",
+        "团队"
+      ],
+      "summary": "CIO 用团队论据互驳、观察过程与偏见；横向比较 ideas 分配权重。",
+      "logicRole": "组织方法",
+      "seeAlso": [
+        "pm-risk-manager"
+      ]
+    },
+    {
+      "id": "blind-men",
+      "category": "metaphor",
+      "title": "盲人摸象 · 一叶知秋",
+      "aliases": [
+        "盲人摸象",
+        "一叶知秋",
+        "森林与叶子"
+      ],
+      "tags": [
+        "认知谦逊"
+      ],
+      "summary": "对未来保持谦卑；宏观与专家常为一叶障目，需多维度再下结论。",
+      "logicRole": "思维警示",
+      "seeAlso": [
+        "uncertainty"
+      ]
+    },
+    {
+      "id": "kind-investor",
+      "category": "philosophy",
+      "title": "善良的投资者",
+      "aliases": [
+        "善良",
+        "博傻",
+        "接力",
+        "泡沫"
+      ],
+      "tags": [
+        "伦理",
+        "市场"
+      ],
+      "summary": "提醒勿将泡沫筹码甩给最后一棒；与风险管理并列的伦理自觉。",
+      "logicRole": "价值观",
+      "seeAlso": []
+    }
+  ],
+  "monthlyInsights": {
+    "meta": {
+      "title": "FHA Monthly Insights 摘要",
+      "subtitle": "FengHe Asia Fund — 业绩与观点摘录（与《随笔》3D/5M/风控叙事对照）",
+      "note": "数据与表述摘自各期月报 PDF，仅供个人学习索引；不构成任何投资建议。"
+    },
+    "reports": [
+      {
+        "id": "202503",
+        "period": "2025-03",
+        "label": "2025年3月",
+        "performance": {
+          "mtdPct": 0.54,
+          "ytdPct": 4.52,
+          "ttmPct": 8.18
+        },
+        "portfolio": {
+          "leverage": 0.95,
+          "aumUsdMil": 4369.0,
+          "longs": 76,
+          "shorts": 30
+        },
+        "themes": [
+          "一季度累计约 +4.5%；多空均有正贡献，相对 MSCI Asia 超额明显。",
+          "提及特朗普「解放日」后市场动荡、组合回撤后严格执行止损，gross 自约 95% 降至约 75%。",
+          "强调对关税扰动不恐慌，以自下而上与纪律应对波动。"
+        ],
+        "frameworkBridge": [
+          "止损",
+          "总头寸",
+          "不预测市场",
+          "自下而上"
+        ]
+      },
+      {
+        "id": "202504",
+        "period": "2025-04",
+        "label": "2025年4月",
+        "performance": {
+          "mtdPct": -0.3,
+          "ytdPct": 4.21,
+          "ttmPct": 10.58
+        },
+        "portfolio": {
+          "leverage": 0.77,
+          "aumUsdMil": 4508.1,
+          "longs": 50,
+          "shorts": 37
+        },
+        "themes": [
+          "特朗普政策与关税噪音下的高波动；当月接近持平、守住 YTD。",
+          "组合止损触发后果断降 gross（约 95%→70%），强调「真正风险在 gross」、低 net 不能免疫双边亏损。",
+          "重申非方向性、自下而上；以基本面应对政策噪声（类比「暴风雨里加固房子」）。"
+        ],
+        "frameworkBridge": [
+          "止损",
+          "总头寸",
+          "确定性",
+          "自下而上"
+        ]
+      },
+      {
+        "id": "202505",
+        "period": "2025-05",
+        "label": "2025年5月",
+        "performance": {
+          "mtdPct": 1.59,
+          "ytdPct": 5.86,
+          "ttmPct": 10.05
+        },
+        "portfolio": {
+          "leverage": 0.84,
+          "aumUsdMil": 4687.0,
+          "longs": 61,
+          "shorts": 40
+        },
+        "themes": [
+          "保守立场下仍取得正回报；组合分散（约 101 个名字）。",
+          "因估值与关税不确定性减持部分长期多头（如阿里、宁德时代），等待更好价位。",
+          "增加奢侈品等结构性空头叙事（「贪婪通胀」、中国地产泡沫外溢需求）。"
+        ],
+        "frameworkBridge": [
+          "价值锚",
+          "结构性做空",
+          "三低",
+          "D3 估值"
+        ]
+      },
+      {
+        "id": "202506",
+        "period": "2025-06",
+        "label": "2025年6月",
+        "performance": {
+          "mtdPct": 0.91,
+          "ytdPct": 6.83,
+          "ttmPct": 5.86
+        },
+        "portfolio": {
+          "leverage": 0.79,
+          "aumUsdMil": 4873.7,
+          "longs": 71,
+          "shorts": 35
+        },
+        "themes": [
+          "强调地缘与 AI 等系统性风险需在公司层面管理；gross 维持低于约 80%。",
+          "增配中国股票：从「不可投资」叙事 vs 自下而上准备度（供应链、能源、金融基础设施等）对照。",
+          "团队扩充中国资深分析师，中国敞口自低位上升。"
+        ],
+        "frameworkBridge": [
+          "不确定性",
+          "自下而上",
+          "三低",
+          "门槛"
+        ]
+      },
+      {
+        "id": "202507",
+        "period": "2025-07",
+        "label": "2025年7月",
+        "performance": {
+          "mtdPct": 4.96,
+          "ytdPct": 12.12,
+          "ttmPct": 10.92
+        },
+        "portfolio": {
+          "leverage": 0.86,
+          "aumUsdMil": 5133.9,
+          "longs": 95,
+          "shorts": 36
+        },
+        "themes": [
+          "多空均有贡献，平均 gross 约 83% 仍取得较强回报；科技供应链与医药突出。",
+          "医药长期为第三大贡献板块；以恒瑞医药等为例写长仓/短仓随环境切换。",
+          "强调回报质量与流程，而非赌方向。"
+        ],
+        "frameworkBridge": [
+          "行业与确定性",
+          "价值锚",
+          "PM 定位 · 风险管理者",
+          "命中率"
+        ]
+      },
+      {
+        "id": "202508",
+        "period": "2025-08",
+        "label": "2025年8月",
+        "performance": {
+          "mtdPct": 3.24,
+          "ytdPct": 15.76,
+          "ttmPct": 13.75
+        },
+        "portfolio": {
+          "leverage": 0.93,
+          "aumUsdMil": 5371.7,
+          "longs": 133,
+          "shorts": 32
+        },
+        "themes": [
+          "A 股组合成为当月最大贡献；A 股 gross 自低位恢复至约 26%。",
+          "区分「国家宏观」与「公司盈利」：投资的是企业与企业家。",
+          "大量公司盈利预测上调 + 估值吸引，推动逐步加仓（三一重工等案例）。"
+        ],
+        "frameworkBridge": [
+          "D1 ROE",
+          "确定性",
+          "价值交易者",
+          "自下而上"
+        ]
+      },
+      {
+        "id": "202509",
+        "period": "2025-09",
+        "label": "2025年9月",
+        "performance": {
+          "mtdPct": 7.1,
+          "ytdPct": 23.97,
+          "ttmPct": 20.03
+        },
+        "portfolio": {
+          "leverage": 0.86,
+          "aumUsdMil": 5915.3
+        },
+        "themes": [
+          "在 gross 低于约 90% 情况下仍大幅跑赢；主动止盈，gross 约 93%→86%。",
+          "强调 YTD alpha 质量（文中提及约 11%+ alpha、平均 gross 约 90%）。",
+          "科技供应链、工业、医疗、消费、金融等多团队分散贡献。"
+        ],
+        "frameworkBridge": [
+          "三低",
+          "确定性",
+          "流程与执行",
+          "真正的对冲基金"
+        ]
+      },
+      {
+        "id": "202510",
+        "period": "2025-10",
+        "label": "2025年10月",
+        "performance": {
+          "mtdPct": 1.37,
+          "ytdPct": 25.67,
+          "ttmPct": 22.01
+        },
+        "portfolio": {
+          "leverage": 0.78,
+          "aumUsdMil": 6212.0
+        },
+        "themes": [
+          "讨论「AI 是否有泡沫」：技术非泡沫、资本市场预期可能泡沫；电力等物理约束。",
+          "AI 三阶段：Formation / Adjustment / Maturity；不预测拐点，组合求平衡（中庸）。",
+          "降 AI 敞口，gross 至约 78%，AI 相关约 12%。"
+        ],
+        "frameworkBridge": [
+          "D3 情绪估值",
+          "不确定性",
+          "3T",
+          "止损"
+        ]
+      },
+      {
+        "id": "202511",
+        "period": "2025-11",
+        "label": "2025年11月",
+        "performance": {
+          "mtdPct": -1.7,
+          "ytdPct": 23.54,
+          "ttmPct": 21.15
+        },
+        "portfolio": {
+          "leverage": 0.83,
+          "aumUsdMil": 6321.5
+        },
+        "themes": [
+          "上月已减仓 AI 后仍受波动拖累，单月约 -1.7%；强调 beta 与回撤管理。",
+          "系统阐述风险管理五支柱：估值纪律、团队多元、空头框架、流动性、止损。",
+          "空头为绝对收益导向，非仅对冲融资工具。"
+        ],
+        "frameworkBridge": [
+          "止损",
+          "做空与对冲",
+          "三低",
+          "团队"
+        ]
+      },
+      {
+        "id": "202512",
+        "period": "2025-12",
+        "label": "2025年12月",
+        "performance": {
+          "mtdPct": 3.07,
+          "ytdPct": 27.33,
+          "ttmPct": 27.33
+        },
+        "portfolio": {
+          "leverage": 1.07,
+          "aumUsdMil": 6740.0
+        },
+        "themes": [
+          "2025 全年约 +27.3%，仅两个月下跌；科技供应链、工业、医疗、金融等广泛贡献。",
+          "明确写出「FengHe 3D」：D1 质地与复利、D2 与共识的预期差、D3 估值纪律；核心仓需满足多维度。",
+          "拒绝宏大宏观展望，强调备忘录文化与谦逊。"
+        ],
+        "frameworkBridge": [
+          "框架 · 3D5M3T",
+          "D1",
+          "D2",
+          "D3",
+          "不预测市场"
+        ]
+      },
+      {
+        "id": "202601",
+        "period": "2026-01",
+        "label": "2026年1月",
+        "performance": {
+          "mtdPct": 13.7,
+          "ytdPct": 13.7,
+          "ttmPct": 40.73
+        },
+        "portfolio": {
+          "leverage": 1.21,
+          "aumUsdMil": 7820.3
+        },
+        "themes": [
+          "单月约 +13.7%，史上仅次于 2015 年 4 月；强调非加杠杆、非集中赌方向。",
+          "框架演进：文中明确「3M → 5M3T3D」、LOGOS、memo 6.5 与流程可复制性。",
+          "存储（铠侠、三星等）、防务（韩华宇航）、中国工业标的等贡献。"
+        ],
+        "frameworkBridge": [
+          "框架 · 3D5M3T",
+          "LOGOS",
+          "流程与执行",
+          "命中率"
+        ]
+      },
+      {
+        "id": "202602",
+        "period": "2026-02",
+        "label": "2026年2月",
+        "performance": {
+          "mtdPct": 3.61,
+          "ytdPct": 17.8,
+          "ttmPct": 44.29
+        },
+        "portfolio": {
+          "leverage": 0.94,
+          "aumUsdMil": 8628.9
+        },
+        "themes": [
+          "科技供应链与工业多头贡献；空头小幅拖累；多市场正贡献。",
+          "MLCC 链条（三环集团、风华高科）、三星存储涨价、川崎重工等。",
+          "主动止盈与降 gross（约 121%→93%）；地缘风险下进一步降至约 59%，强调非自上而下、而是估值与风险收益比。",
+          "霍尔木兹等地缘不确定性下的「谦逊对冲」与现金等待机会。"
+        ],
+        "frameworkBridge": [
+          "止损",
+          "D3",
+          "总头寸",
+          "不确定性",
+          "自下而上"
+        ]
+      }
+    ]
+  },
+  "stockMentions": {
+    "meta": {
+      "title": "个股与表述索引（FHA 月报 + 随笔案例）",
+      "note": "提炼自 FHA Monthly Insights 202503–202602 投资人信件；「引用原文」为可核对的摘录或引述，回查请以原信为准。仅供个人研究索引，不构成投资建议。",
+      "essay": {
+        "title": "《风和投资随笔1》个股与交易案例",
+        "source": "胡猛 著 — 目录与篇章案例提炼",
+        "note": "与月报索引合并展示；篇名为书中标题。「引用原文」为书中可核对摘录或引述，回查请以原书为准。"
+      }
+    },
+    "stocks": [
+      {
+        "id": "nitori",
+        "displayName": "宜得利 Nitori",
+        "aliases": [
+          "Nitori",
+          "宜得利",
+          "日本宜得利"
+        ],
+        "tickers": [
+          "9843.T"
+        ],
+        "mentions": [
+          {
+            "reportId": "202504",
+            "stance": "long",
+            "action": "案例/多头",
+            "quote": "作为受关税影响较小、内需为主的持仓案例：日本家具家居龙头，约九成收入来自日本国内。",
+            "source": "monthly"
+          }
+        ]
+      },
+      {
+        "id": "alibaba",
+        "displayName": "阿里巴巴 Alibaba",
+        "aliases": [
+          "Alibaba",
+          "阿里",
+          "阿里巴巴"
+        ],
+        "tickers": [
+          "BABA",
+          "9988.HK"
+        ],
+        "mentions": [
+          {
+            "reportId": "202505",
+            "stance": "long",
+            "action": "减持多头",
+            "quote": "5 月减持部分多头仓位：基本面未恶化，但股价与基本面脱节，在关税不确定性下等待更好再入场价位。",
+            "source": "monthly"
+          }
+        ]
+      },
+      {
+        "id": "catl",
+        "displayName": "宁德时代 CATL",
+        "aliases": [
+          "CATL",
+          "宁德时代",
+          "Contemporary Amperex"
+        ],
+        "tickers": [
+          "300750.SZ"
+        ],
+        "mentions": [
+          {
+            "reportId": "202505",
+            "stance": "long",
+            "action": "减持多头",
+            "quote": "与阿里类似，因估值与关税不确定性减持长线多头，非基本面转差。",
+            "source": "monthly"
+          },
+          {
+            "reportId": "202508",
+            "stance": "long",
+            "action": "案例",
+            "quote": "作为 A 股盈利逆势成长的典型样本，与恒瑞并列说明「宏观弱、公司强」。",
+            "source": "monthly"
+          }
+        ]
+      },
+      {
+        "id": "jiangsu-hengrui",
+        "displayName": "恒瑞医药",
+        "aliases": [
+          "恒瑞",
+          "Hengrui",
+          "Jiangsu Hengrui",
+          "江苏恒瑞"
+        ],
+        "tickers": [
+          "600276.SH"
+        ],
+        "mentions": [
+          {
+            "reportId": "202507",
+            "stance": "long",
+            "action": "核心持仓/高确信",
+            "quote": "当月第二大贡献之一；医药板块核心多头；历史上在 2018 年熊市为少数贡献多的多头、2021 年曾为贡献多的空头之一，体现同一标的随基本面与定价切换多空。",
+            "source": "monthly"
+          },
+          {
+            "reportId": "202507",
+            "stance": "long",
+            "action": "研究观点",
+            "quote": "创新药转型、管线扩张、对外授权（如与 GSK）等作为长期看多逻辑；认为仍有上行空间。",
+            "source": "monthly"
+          },
+          {
+            "reportId": "202508",
+            "stance": "long",
+            "action": "案例",
+            "quote": "作为 A 股盈利成长与全球竞争力的案例，与 CATL 一并引用。",
+            "source": "monthly"
+          }
+        ]
+      },
+      {
+        "id": "betta",
+        "displayName": "贝达药业 Betta",
+        "aliases": [
+          "Betta",
+          "贝达药业",
+          "Betta Pharmaceuticals"
+        ],
+        "tickers": [
+          "300558.SZ"
+        ],
+        "mentions": [
+          {
+            "reportId": "202507",
+            "stance": "long",
+            "action": "历史贡献",
+            "quote": "信中列出的医药板块历年贡献标的之一（多空均有成功范例的语境）。",
+            "source": "monthly"
+          }
+        ]
+      },
+      {
+        "id": "genscript",
+        "displayName": "金斯瑞 GenScript",
+        "aliases": [
+          "GenScript",
+          "金斯瑞",
+          "GenScript Biotech"
+        ],
+        "tickers": [
+          "1548.HK"
+        ],
+        "mentions": [
+          {
+            "reportId": "202507",
+            "stance": "long",
+            "action": "历史贡献",
+            "quote": "医药板块历年贡献代表公司之一。",
+            "source": "monthly"
+          }
+        ]
+      },
+      {
+        "id": "3sbio",
+        "displayName": "三生制药 3SBio",
+        "aliases": [
+          "3SBio",
+          "三生制药"
+        ],
+        "tickers": [
+          "1530.HK"
+        ],
+        "mentions": [
+          {
+            "reportId": "202507",
+            "stance": "long",
+            "action": "历史贡献",
+            "quote": "医药板块历年多空均有贡献的标的之一。",
+            "source": "monthly"
+          }
+        ]
+      },
+      {
+        "id": "maccura",
+        "displayName": "迈克生物 Maccura",
+        "aliases": [
+          "Maccura",
+          "迈克生物",
+          "Maccura Biotech"
+        ],
+        "tickers": [
+          "300463.SZ"
+        ],
+        "mentions": [
+          {
+            "reportId": "202507",
+            "stance": "long",
+            "action": "历史贡献",
+            "quote": "医药板块贡献案例列举。",
+            "source": "monthly"
+          }
+        ]
+      },
+      {
+        "id": "wuxi-apptec",
+        "displayName": "药明康德 WuXi AppTec",
+        "aliases": [
+          "WuXi AppTec",
+          "药明康德",
+          "WuXi"
+        ],
+        "tickers": [
+          "2359.HK",
+          "603259.SH"
+        ],
+        "mentions": [
+          {
+            "reportId": "202507",
+            "stance": "long",
+            "action": "历史贡献",
+            "quote": "医药板块历年代表持仓之一（多空语境下均有贡献）。",
+            "source": "monthly"
+          }
+        ]
+      },
+      {
+        "id": "daiichi-sankyo",
+        "displayName": "第一三共 Daiichi Sankyo",
+        "aliases": [
+          "Daiichi Sankyo",
+          "第一三共"
+        ],
+        "tickers": [
+          "4568.T"
+        ],
+        "mentions": [
+          {
+            "reportId": "202507",
+            "stance": "long",
+            "action": "案例",
+            "quote": "去年 8 月日股剧烈调整时，日本医药持仓帮助组合度过回撤，体现跨区域医药选股能力。",
+            "source": "monthly"
+          }
+        ]
+      },
+      {
+        "id": "align-tech",
+        "displayName": "Align Technology (ALGN)",
+        "aliases": [
+          "ALGN",
+          "Align Technology",
+          "Invisalign",
+          "艾利科技"
+        ],
+        "tickers": [
+          "ALGN"
+        ],
+        "mentions": [
+          {
+            "reportId": "202507",
+            "stance": "short",
+            "action": "空头贡献",
+            "quote": "当月重要空头贡献之一：隐形正畸全球龙头份额被时代天使等中国竞争者侵蚀，看空其全球份额与盈利。",
+            "source": "monthly"
+          }
+        ]
+      },
+      {
+        "id": "angelalign",
+        "displayName": "时代天使 Angelalign",
+        "aliases": [
+          "Angelalign",
+          "时代天使"
+        ],
+        "tickers": [
+          "6699.HK"
+        ],
+        "mentions": [
+          {
+            "reportId": "202507",
+            "stance": "long",
+            "action": "竞争格局研究",
+            "quote": "作为理解 ALGN 空头与全球隐形正畸竞争格局的核心对标（中国公司出海与制造效率）。",
+            "source": "monthly"
+          }
+        ]
+      },
+      {
+        "id": "xiaomi",
+        "displayName": "小米集团",
+        "aliases": [
+          "Xiaomi",
+          "小米",
+          "小米集团"
+        ],
+        "tickers": [
+          "1810.HK"
+        ],
+        "mentions": [
+          {
+            "reportId": "202507",
+            "stance": "long",
+            "action": "持仓",
+            "quote": "信中称目前持有 28 个中国公司多头之一，作为逆境中仍具活力与创新力的代表。",
+            "source": "monthly"
+          }
+        ]
+      },
+      {
+        "id": "pop-mart",
+        "displayName": "泡泡玛特 Pop Mart",
+        "aliases": [
+          "Pop Mart",
+          "泡泡玛特"
+        ],
+        "tickers": [
+          "9992.HK"
+        ],
+        "mentions": [
+          {
+            "reportId": "202507",
+            "stance": "long",
+            "action": "持仓",
+            "quote": "与小米、恒瑞等并列，作为中国公司韧性案例。",
+            "source": "monthly"
+          }
+        ]
+      },
+      {
+        "id": "laopu-gold",
+        "displayName": "老铺黄金 Laopu Gold",
+        "aliases": [
+          "Laopu Gold",
+          "老铺黄金"
+        ],
+        "tickers": [
+          "1811.HK"
+        ],
+        "mentions": [
+          {
+            "reportId": "202507",
+            "stance": "long",
+            "action": "持仓",
+            "quote": "信中列举的中国多头代表性公司之一。",
+            "source": "monthly"
+          }
+        ]
+      },
+      {
+        "id": "sany-heavy",
+        "displayName": "三一重工",
+        "aliases": [
+          "Sany",
+          "三一重工",
+          "Sany Heavy Industry"
+        ],
+        "tickers": [
+          "600031.SH"
+        ],
+        "mentions": [
+          {
+            "reportId": "202508",
+            "stance": "long",
+            "action": "核心持仓",
+            "quote": "核心持仓案例：未来数年盈利高增、估值约 12 倍 2026E PE；灯塔工厂与出海、管理层接班与国际化。",
+            "source": "monthly"
+          },
+          {
+            "reportId": "202508",
+            "stance": "short",
+            "action": "历史交易",
+            "quote": "约五年前在下行周期曾做过盈利空头；约三年前转乐观、仓位由小到大，现为 A 股核心持仓之一。",
+            "source": "monthly"
+          }
+        ]
+      },
+      {
+        "id": "kioxia",
+        "displayName": "铠侠 Kioxia",
+        "aliases": [
+          "Kioxia",
+          "铠侠"
+        ],
+        "tickers": [
+          "285A.T"
+        ],
+        "mentions": [
+          {
+            "reportId": "202601",
+            "stance": "long",
+            "action": "贡献",
+            "quote": "1 月业绩贡献来源之一：存储涨价与组合在存储链条上的布局（日本）。",
+            "source": "monthly"
+          }
+        ]
+      },
+      {
+        "id": "samsung-elec",
+        "displayName": "三星电子 Samsung Electronics",
+        "aliases": [
+          "Samsung",
+          "三星电子",
+          "Samsung Electronics"
+        ],
+        "tickers": [
+          "005930.KS"
+        ],
+        "mentions": [
+          {
+            "reportId": "202601",
+            "stance": "long",
+            "action": "贡献",
+            "quote": "存储价格上行带动，为 1 月重要贡献之一。",
+            "source": "monthly"
+          },
+          {
+            "reportId": "202602",
+            "stance": "long",
+            "action": "贡献",
+            "quote": "DRAM/NAND 涨价加速，多头表现突出。",
+            "source": "monthly"
+          },
+          {
+            "essayTitle": "为什么是台湾？ / 三星，一个经典的逆势投资案例",
+            "essayYear": "2016",
+            "stance": "long",
+            "action": "逆势案例",
+            "quote": "三星作为逆势投资经典案例的篇章，与产业链研究方法论挂钩。",
+            "relatedKeywordIds": [
+              "fenghe-philosophy",
+              "cyclical-short"
+            ],
+            "source": "essay"
+          }
+        ]
+      },
+      {
+        "id": "hanwha-aerospace",
+        "displayName": "韩华宇航 Hanwha Aerospace",
+        "aliases": [
+          "Hanwha Aerospace",
+          "韩华宇航"
+        ],
+        "tickers": [
+          "012450.KS"
+        ],
+        "mentions": [
+          {
+            "reportId": "202601",
+            "stance": "long",
+            "action": "贡献",
+            "quote": "防务板块反弹与地缘背景下，为当月头部贡献之一。",
+            "source": "monthly"
+          }
+        ]
+      },
+      {
+        "id": "three-circle",
+        "displayName": "三环集团（潮州三环）",
+        "aliases": [
+          "Three-Circle",
+          "三环集团",
+          "Chaozhou Three-Circle",
+          "潮州三环"
+        ],
+        "tickers": [
+          "300408.SZ"
+        ],
+        "mentions": [
+          {
+            "reportId": "202601",
+            "stance": "long",
+            "action": "贡献",
+            "quote": "与紫金矿业等并列，作为中国工业/材料侧贡献。",
+            "source": "monthly"
+          },
+          {
+            "reportId": "202602",
+            "stance": "long",
+            "action": "贡献",
+            "quote": "MLCC 链条定价与供需改善，多头表现好；科技供应链覆盖延伸至更多 A 股标的。",
+            "source": "monthly"
+          }
+        ]
+      },
+      {
+        "id": "zijin-mining",
+        "displayName": "紫金矿业",
+        "aliases": [
+          "Zijin",
+          "紫金矿业",
+          "Zijin Mining"
+        ],
+        "tickers": [
+          "601899.SH",
+          "2899.HK"
+        ],
+        "mentions": [
+          {
+            "reportId": "202601",
+            "stance": "long",
+            "action": "贡献",
+            "quote": "中国工业/资源侧多头，为 1 月多市场正贡献之一。",
+            "source": "monthly"
+          }
+        ]
+      },
+      {
+        "id": "fenghua-adv-tech",
+        "displayName": "风华高科 Fenghua Advanced",
+        "aliases": [
+          "Fenghua",
+          "风华高科",
+          "Fenghua Advanced Technology"
+        ],
+        "tickers": [
+          "000636.SZ"
+        ],
+        "mentions": [
+          {
+            "reportId": "202602",
+            "stance": "long",
+            "action": "贡献",
+            "quote": "与三环一并作为 MLCC/电子元件链条多头贡献。",
+            "source": "monthly"
+          }
+        ]
+      },
+      {
+        "id": "kawasaki-hi",
+        "displayName": "川崎重工 Kawasaki Heavy",
+        "aliases": [
+          "Kawasaki",
+          "川崎重工",
+          "Kawasaki Heavy Industries"
+        ],
+        "tickers": [
+          "7012.T"
+        ],
+        "mentions": [
+          {
+            "reportId": "202602",
+            "stance": "long",
+            "action": "贡献",
+            "quote": "业绩超预期与日本防务情绪改善，表现较好。",
+            "source": "monthly"
+          }
+        ]
+      },
+      {
+        "id": "microsoft",
+        "displayName": "Microsoft",
+        "aliases": [
+          "Microsoft",
+          "微软",
+          "Satya Nadella"
+        ],
+        "tickers": [
+          "MSFT"
+        ],
+        "mentions": [
+          {
+            "reportId": "202510",
+            "stance": "thematic",
+            "action": "引用",
+            "quote": "AI 电力瓶颈语境下引用 CEO 关于 GPU 与电力接入困难的表述，非 necessarily 组合核心持仓披露。",
+            "source": "monthly"
+          }
+        ]
+      },
+      {
+        "id": "openai",
+        "displayName": "OpenAI（主题）",
+        "aliases": [
+          "OpenAI"
+        ],
+        "tickers": [],
+        "mentions": [
+          {
+            "reportId": "202510",
+            "stance": "thematic",
+            "action": "估值讨论",
+            "quote": "作为 AI 估值与预期超前于现金流的讨论案例。",
+            "source": "monthly"
+          }
+        ]
+      },
+      {
+        "id": "netease",
+        "displayName": "网易",
+        "aliases": [
+          "网易",
+          "NetEase",
+          "NTES"
+        ],
+        "tickers": [
+          "NTES",
+          "9999.HK"
+        ],
+        "mentions": [
+          {
+            "essayTitle": "我们为什么做空网易？",
+            "essayYear": "2018",
+            "stance": "short",
+            "action": "做空案例",
+            "quote": "专章讨论做空逻辑：基本面与市场定价、游戏业务等语境下的空头论证（书中案例，非当前持仓暗示）。",
+            "relatedKeywordIds": [
+              "short-earnings",
+              "party-theory",
+              "dual-kill"
+            ],
+            "source": "essay"
+          }
+        ]
+      },
+      {
+        "id": "gsx",
+        "displayName": "跟谁学 / 高途",
+        "aliases": [
+          "跟谁学",
+          "GSX",
+          "高途",
+          "Gaotu"
+        ],
+        "tickers": [
+          "GOTU"
+        ],
+        "mentions": [
+          {
+            "essayTitle": "我们为什么做空「跟谁学」",
+            "essayYear": "2020",
+            "stance": "short",
+            "action": "做空案例",
+            "quote": "教育与在线赛道上的做空分析框架示范，与盈利预期、商业模式验证相关讨论。",
+            "relatedKeywordIds": [
+              "short-earnings",
+              "internet-caution",
+              "certainty"
+            ],
+            "source": "essay"
+          },
+          {
+            "essayTitle": "再谈「跟谁学」",
+            "essayYear": "2020",
+            "stance": "short",
+            "action": "跟踪",
+            "quote": "对同一标的的持续论证与边际变化观察。",
+            "relatedKeywordIds": [
+              "short-earnings",
+              "t-framework"
+            ],
+            "source": "essay"
+          }
+        ]
+      },
+      {
+        "id": "jd",
+        "displayName": "京东 JD.com",
+        "aliases": [
+          "京东",
+          "JD.com",
+          "JD"
+        ],
+        "tickers": [
+          "JD",
+          "9618.HK"
+        ],
+        "mentions": [
+          {
+            "essayTitle": "逆势投资与京东",
+            "essayYear": "2017",
+            "stance": "long",
+            "action": "逆势多头案例",
+            "quote": "逆势买入与基本面研究的结合案例，用于说明「逆短期、顺长期」的操作语境。",
+            "relatedKeywordIds": [
+              "fenghe-philosophy",
+              "certainty",
+              "bottom-up"
+            ],
+            "source": "essay"
+          }
+        ]
+      },
+      {
+        "id": "weichai",
+        "displayName": "潍柴动力",
+        "aliases": [
+          "潍柴",
+          "潍柴动力",
+          "Weichai",
+          "2338"
+        ],
+        "tickers": [
+          "2338.HK",
+          "000338.SZ"
+        ],
+        "mentions": [
+          {
+            "essayTitle": "踩烂理论",
+            "essayYear": "2015",
+            "stance": "short",
+            "action": "空头持仓语境",
+            "quote": "文中以潍柴等为例说明「踩烂」与静态估值陷阱：盈利仍可继续恶化时的做空持有逻辑。",
+            "relatedKeywordIds": [
+              "step-on-bad",
+              "m3-margin",
+              "party-theory"
+            ],
+            "source": "essay"
+          }
+        ]
+      },
+      {
+        "id": "futu",
+        "displayName": "富途控股",
+        "aliases": [
+          "富途",
+          "Futu",
+          "FUTU"
+        ],
+        "tickers": [
+          "FUTU"
+        ],
+        "mentions": [
+          {
+            "essayTitle": "进退自如",
+            "essayYear": "2021",
+            "stance": "long",
+            "action": "建仓/减仓纪律",
+            "quote": "仓位上限、涨幅与风控纪律案例，体现「价值交易者」与权重管理。",
+            "relatedKeywordIds": [
+              "value-anchor",
+              "three-low",
+              "hit-rate"
+            ],
+            "source": "essay"
+          }
+        ]
+      },
+      {
+        "id": "hkex",
+        "displayName": "香港交易所",
+        "aliases": [
+          "港交所",
+          "HKEX",
+          "香港交易所"
+        ],
+        "tickers": [
+          "0388.HK"
+        ],
+        "mentions": [
+          {
+            "essayTitle": "关于港交所的对话",
+            "essayYear": "2017",
+            "stance": "long",
+            "action": "分析/比较",
+            "quote": "垄断 beta 与平台价值的讨论，与后续选择线上券商链条标的的思路对照。",
+            "relatedKeywordIds": [
+              "value-anchor",
+              "mainstream-crowded"
+            ],
+            "source": "essay"
+          }
+        ]
+      },
+      {
+        "id": "largan",
+        "displayName": "大立光",
+        "aliases": [
+          "大立光",
+          "Largan"
+        ],
+        "tickers": [
+          "3008.TW"
+        ],
+        "mentions": [
+          {
+            "essayTitle": "再谈做空 / 周期与结构",
+            "essayYear": "2020",
+            "stance": "short",
+            "action": "周期做空",
+            "quote": "手机镜头周期与 6P  commoditization、竞争报价导致利润率下行——与月报 2020 镜头链论述同一产业逻辑线。",
+            "relatedKeywordIds": [
+              "cyclical-short",
+              "m3-margin",
+              "dual-kill"
+            ],
+            "source": "essay"
+          }
+        ]
+      },
+      {
+        "id": "sunny-optical",
+        "displayName": "舜宇光学",
+        "aliases": [
+          "舜宇",
+          "舜宇光学",
+          "Sunny Optical"
+        ],
+        "tickers": [
+          "2382.HK"
+        ],
+        "mentions": [
+          {
+            "essayTitle": "再谈做空",
+            "essayYear": "2020",
+            "stance": "short",
+            "action": "周期做空",
+            "quote": "镜头产业链竞争与降价周期中的空头分析语境。",
+            "relatedKeywordIds": [
+              "cyclical-short",
+              "m3-margin"
+            ],
+            "source": "essay"
+          }
+        ]
+      },
+      {
+        "id": "mediatek",
+        "displayName": "联发科",
+        "aliases": [
+          "联发科",
+          "MediaTek",
+          "MTK"
+        ],
+        "tickers": [
+          "2454.TW"
+        ],
+        "mentions": [
+          {
+            "essayTitle": "组合与回撤（多篇语境）",
+            "essayYear": "2015",
+            "stance": "short",
+            "action": "历史空头贡献",
+            "quote": "随笔中列举成功做空案例时提及联发科等（台湾科技硬件）。",
+            "relatedKeywordIds": [
+              "true-hedge-fund",
+              "hit-rate"
+            ],
+            "source": "essay"
+          }
+        ]
+      },
+      {
+        "id": "wynn-macau",
+        "displayName": "永利澳门",
+        "aliases": [
+          "永利澳门",
+          "Wynn Macau",
+          "WYNN"
+        ],
+        "tickers": [
+          "1128.HK",
+          "WYNN"
+        ],
+        "mentions": [
+          {
+            "essayTitle": "回撤与做空（澳门博彩语境）",
+            "essayYear": "2017",
+            "stance": "short",
+            "action": "周期/结构性做空",
+            "quote": "贵宾厅与澳门博彩周期的做空线索，与月报中澳门赌场周期叙事一致。",
+            "relatedKeywordIds": [
+              "cyclical-short",
+              "m3-margin",
+              "party-theory"
+            ],
+            "source": "essay"
+          }
+        ]
+      },
+      {
+        "id": "leeco",
+        "displayName": "乐视",
+        "aliases": [
+          "乐视",
+          "LeEco",
+          "贾跃亭"
+        ],
+        "tickers": [],
+        "mentions": [
+          {
+            "essayTitle": "关于乐视与贾跃亭",
+            "essayYear": "2017",
+            "stance": "short",
+            "action": "风险/叙事",
+            "quote": "对高预期、高融资与基本面脱节的讨论，用作风险管理与「宴席」隐喻的补充案例。",
+            "relatedKeywordIds": [
+              "party-theory",
+              "short-earnings",
+              "uncertainty"
+            ],
+            "source": "essay"
+          }
+        ]
+      }
+    ]
+  }
+};
+
+</script>
+<script>
+/**
+ * 风和投资-胡猛知识库：随笔关键词 + FHA 月报 + 个股表述索引
+ */
+
+(function () {
+  const state = {
+    data: null,
+    query: "",
+    categoryId: null,
+    view: "framework",
+    monthlyQuery: "",
+    monthlyYear: null,
+    stockQuery: "",
+    selectedStockId: null,
+  };
+
+  const els = {};
+
+  function $(sel, root = document) {
+    return root.querySelector(sel);
+  }
+
+  function escapeHtml(s) {
+    return String(s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function highlight(text, q) {
+    if (!q || !text) return escapeHtml(text);
+    const safe = escapeHtml(text);
+    const words = q.trim().split(/\s+/).filter(Boolean);
+    if (words.length === 0) return safe;
+    try {
+      const pattern = new RegExp(
+        "(" +
+          words
+            .map((w) => w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
+            .join("|") +
+          ")",
+        "gi"
+      );
+      return safe.replace(pattern, "<mark>$1</mark>");
+    } catch {
+      return safe;
+    }
+  }
+
+  function entryMatches(entry, q) {
+    if (!q) return true;
+    const hay = [
+      entry.title,
+      entry.summary,
+      entry.logicRole || "",
+      (entry.tags || []).join(" "),
+      (entry.aliases || []).join(" "),
+    ]
+      .join("\n")
+      .toLowerCase();
+    const words = q
+      .toLowerCase()
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean);
+    return words.every((w) => hay.includes(w));
+  }
+
+  function reportMatches(report, q) {
+    if (!q) return true;
+    const hay = [
+      report.id || "",
+      report.label || "",
+      report.period || "",
+      (report.themes || []).join(" "),
+      (report.frameworkBridge || []).join(" "),
+      JSON.stringify(report.performance || {}),
+      JSON.stringify(report.portfolio || {}),
+    ]
+      .join("\n")
+      .toLowerCase();
+    const words = q
+      .toLowerCase()
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean);
+    return words.every((w) => hay.includes(w));
+  }
+
+  function getStocksArray() {
+    const sm = state.data && state.data.stockMentions;
+    return (sm && sm.stocks) || [];
+  }
+
+  /** 与 scripts/embed-data.py 中 merge_stock_mentions 一致（HTTP 加载 JSON 时用）。 */
+  function mergeStockMentionsClientSide(monthlyFile, essayFile) {
+    const meta = Object.assign({}, monthlyFile.meta || {});
+    if (essayFile && essayFile.meta) meta.essay = essayFile.meta;
+    meta.title = "个股与表述索引（FHA 月报 + 随笔案例）";
+
+    const byId = {};
+
+    (monthlyFile.stocks || []).forEach((s) => {
+      const sid = s.id;
+      const mentions = (s.mentions || []).map((m) =>
+        Object.assign({}, m, { source: "monthly" })
+      );
+      byId[sid] = Object.assign({}, s, { mentions });
+    });
+
+    (essayFile.stocks || []).forEach((s) => {
+      const sid = s.id;
+      const em = (s.mentions || []).map((m) =>
+        Object.assign({}, m, { source: "essay" })
+      );
+      if (byId[sid]) {
+        byId[sid].mentions = byId[sid].mentions.concat(em);
+        byId[sid].aliases = Array.from(
+          new Set([...(byId[sid].aliases || []), ...(s.aliases || [])])
+        );
+        byId[sid].tickers = Array.from(
+          new Set([...(byId[sid].tickers || []), ...(s.tickers || [])])
+        );
+      } else {
+        byId[sid] = Object.assign({}, s, { mentions: em });
+      }
+    });
+
+    return { meta, stocks: Object.values(byId) };
+  }
+
+  function stockMatches(stock, q) {
+    if (!q) return true;
+    const mentionText = (stock.mentions || [])
+      .map((m) =>
+        [
+          m.quote,
+          m.summary,
+          m.essayTitle,
+          m.action,
+          m.reportId,
+        ].join(" ")
+      )
+      .join(" ");
+    const hay = [
+      stock.displayName || "",
+      (stock.aliases || []).join(" "),
+      (stock.tickers || []).join(" "),
+      stock.id || "",
+      mentionText,
+    ]
+      .join("\n")
+      .toLowerCase();
+    const words = q
+      .toLowerCase()
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean);
+    return words.every((w) => hay.includes(w));
+  }
+
+  function getFilteredStocks() {
+    return getStocksArray().filter((s) => stockMatches(s, state.stockQuery));
+  }
+
+  function getStocksForReport(reportId) {
+    return getStocksArray().filter((s) =>
+      (s.mentions || []).some((m) => m.reportId === reportId)
+    );
+  }
+
+  function getReportLabel(reportId) {
+    const reports = (state.data.monthlyInsights && state.data.monthlyInsights.reports) || [];
+    const r = reports.find((x) => x.id === reportId);
+    return r ? r.label || r.period || reportId : reportId;
+  }
+
+  function getFilteredEntries() {
+    const { data, query, categoryId } = state;
+    if (!data || !data.entries) return [];
+    return data.entries.filter((e) => {
+      if (categoryId && e.category !== categoryId) return false;
+      return entryMatches(e, query);
+    });
+  }
+
+  function getMonthlyReports() {
+    const mi = state.data && state.data.monthlyInsights;
+    if (!mi || !mi.reports) return [];
+    let list = mi.reports.slice();
+    if (state.monthlyYear) {
+      list = list.filter((r) => String(r.period || "").startsWith(state.monthlyYear));
+    }
+    return list.filter((r) => reportMatches(r, state.monthlyQuery));
+  }
+
+  function renderChips() {
+    const { data } = state;
+    if (!data || !data.categories) return;
+    const frag = document.createDocumentFragment();
+    const all = document.createElement("button");
+    all.type = "button";
+    all.className = "chip" + (state.categoryId === null ? " active" : "");
+    all.textContent = "全部";
+    all.dataset.category = "";
+    frag.appendChild(all);
+
+    data.categories
+      .slice()
+      .sort((a, b) => a.order - b.order)
+      .forEach((c) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "chip" + (state.categoryId === c.id ? " active" : "");
+        b.textContent = c.label;
+        b.dataset.category = c.id;
+        frag.appendChild(b);
+      });
+
+    els.chipsContainer.innerHTML = "";
+    els.chipsContainer.appendChild(frag);
+  }
+
+  function renderYearChips() {
+    const years = ["2025", "2026"];
+    const frag = document.createDocumentFragment();
+    const all = document.createElement("button");
+    all.type = "button";
+    all.className = "chip" + (state.monthlyYear === null ? " active" : "");
+    all.textContent = "全部";
+    all.dataset.year = "";
+    frag.appendChild(all);
+    years.forEach((y) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "chip" + (state.monthlyYear === y ? " active" : "");
+      b.textContent = y;
+      b.dataset.year = y;
+      frag.appendChild(b);
+    });
+    els.yearChips.innerHTML = "";
+    els.yearChips.appendChild(frag);
+  }
+
+  function renderCards() {
+    const list = getFilteredEntries();
+    const q = state.query;
+
+    els.statsCount.textContent = String(list.length);
+    els.statsTotal.textContent = String(state.data.entries.length);
+
+    if (list.length === 0) {
+      els.cardGrid.innerHTML =
+        '<div class="empty-state">无匹配条目。请调整关键词或分类。</div>';
+      return;
+    }
+
+    const catMap = {};
+    state.data.categories.forEach((c) => {
+      catMap[c.id] = c.label;
+    });
+
+    els.cardGrid.innerHTML = list
+      .map((entry) => {
+        const catLabel = catMap[entry.category] || entry.category;
+        const aliases = (entry.aliases || [])
+          .slice(0, 12)
+          .map((a) => `<span>${highlight(a, q)}</span>`)
+          .join("");
+        const see = (entry.seeAlso || [])
+          .map((id) => {
+            const t = state.data.entries.find((x) => x.id === id);
+            return t ? t.title : id;
+          })
+          .join(" · ");
+        const relIds = entry.relatedStockIds || [];
+        const relStocks = relIds
+          .map((sid) => {
+            const st = getStocksArray().find((x) => x.id === sid);
+            const lab = st ? st.displayName : sid;
+            return `<button type="button" class="fw-stock-chip" data-stock-id="${escapeHtml(sid)}">${escapeHtml(lab)}</button>`;
+          })
+          .join("");
+        const relRow = relStocks
+          ? `<p class="category-label" style="margin-top:0.65rem;">关联个股（随笔/月报索引）</p><div class="bridge-row">${relStocks}</div>`
+          : "";
+        return `
+        <article class="card" data-id="${escapeHtml(entry.id)}">
+          <h2>${highlight(entry.title, q)}</h2>
+          <div class="meta-row">
+            <span class="badge">${escapeHtml(catLabel)}</span>
+            ${entry.logicRole ? `<span class="badge logic">${highlight(entry.logicRole, q)}</span>` : ""}
+          </div>
+          <p class="summary">${highlight(entry.summary, q)}</p>
+          <div class="aliases"><strong style="color:var(--muted);font-size:0.75rem;">别名 / 检索词：</strong></div>
+          <div class="aliases">${aliases}</div>
+          ${relRow}
+          ${see ? `<div class="see-also">关联词条：${highlight(see, q)}</div>` : ""}
+        </article>`;
+      })
+      .join("");
+  }
+
+  function fmtPct(n) {
+    if (n === undefined || n === null || Number.isNaN(n)) return "—";
+    const sign = n > 0 ? "+" : "";
+    return sign + n.toFixed(2) + "%";
+  }
+
+  function fmtNum(n) {
+    if (n === undefined || n === null) return "—";
+    const x = Number(n);
+    if (Number.isNaN(x)) return "—";
+    return x.toLocaleString(undefined, { maximumFractionDigits: 1 });
+  }
+
+  function stanceClass(stance) {
+    if (stance === "short") return "stance-short";
+    if (stance === "long") return "stance-long";
+    return "stance-other";
+  }
+
+  function renderMonthlyIntro() {
+    const mi = state.data.monthlyInsights;
+    if (!mi || !els.monthlyIntro) return;
+    const meta = mi.meta || {};
+    els.monthlyIntro.innerHTML = `
+      <p class="monthly-intro-lead"><strong>${escapeHtml(meta.title || "")}</strong> — ${escapeHtml(meta.subtitle || "")}</p>
+      <p class="monthly-intro-note">${escapeHtml(meta.note || "")}</p>
+    `;
+  }
+
+  function mentionSortKey(m) {
+    if (m.reportId) return m.reportId;
+    return String(m.essayYear || "0000") + (m.essayTitle || "");
+  }
+
+  function renderMonthlyPerformanceCharts() {
+    const host = $("#monthly-chart-wrap");
+    if (!host) return;
+    const reports = (state.data.monthlyInsights && state.data.monthlyInsights.reports) || [];
+    if (reports.length === 0) {
+      host.innerHTML = "";
+      return;
+    }
+    const sorted = reports.slice().sort((a, b) => String(a.period || "").localeCompare(String(b.period || "")));
+    const mtds = sorted.map((r) =>
+      r.performance && r.performance.mtdPct != null ? r.performance.mtdPct : 0
+    );
+    const ytds = sorted.map((r) =>
+      r.performance && r.performance.ytdPct != null ? r.performance.ytdPct : 0
+    );
+    const maxAbs = Math.max(0.5, ...mtds.map(Math.abs));
+    const maxYtd = Math.max(1, ...ytds.map(Math.abs));
+
+    let bestIdx = 0;
+    let worstIdx = 0;
+    mtds.forEach((v, i) => {
+      if (v > mtds[bestIdx]) bestIdx = i;
+      if (v < mtds[worstIdx]) worstIdx = i;
+    });
+
+    const bars = sorted
+      .map((r, i) => {
+        const v = mtds[i];
+        const h = (Math.abs(v) / maxAbs) * 100;
+        const neg = v < 0;
+        const shortLab = (r.period || "").slice(5) || r.label || "";
+        return `<div class="mtd-bar-col" title="${escapeHtml(r.label || "")} MTD ${fmtPct(v)}">
+          <div class="mtd-bar-inner">
+            <div class="mtd-bar ${neg ? "neg" : "pos"}" style="height:${h}%"></div>
+          </div>
+          <span class="mtd-bar-label">${escapeHtml(shortLab)}</span>
+        </div>`;
+      })
+      .join("");
+
+    const n = ytds.length;
+    const pts = ytds
+      .map((y, i) => {
+        const x = n <= 1 ? 50 : (i / (n - 1)) * 100;
+        const yy = 38 - (y / maxYtd) * 36;
+        return `${x},${yy}`;
+      })
+      .join(" ");
+
+    const lastYtd = ytds[ytds.length - 1];
+    const lastLab = sorted[sorted.length - 1].label || "";
+
+    host.innerHTML = `
+      <div class="chart-section">
+        <h3 class="chart-title">FHA Asia 月度净收益 MTD（柱状）</h3>
+        <div class="mtd-highlight-strip">
+          <span>最佳单月：<strong>${escapeHtml(sorted[bestIdx].label || "")}</strong> ${fmtPct(mtds[bestIdx])}</span>
+          <span>最弱单月：<strong>${escapeHtml(sorted[worstIdx].label || "")}</strong> ${fmtPct(mtds[worstIdx])}</span>
+          <span>期末 YTD：<strong>${fmtPct(lastYtd)}</strong>（${escapeHtml(lastLab)}）</span>
+        </div>
+        <div class="mtd-chart-row">${bars}</div>
+        <h3 class="chart-title">YTD 累计走势（折线，期末值）</h3>
+        <div class="ytd-chart-svg-wrap">
+          <svg class="ytd-svg" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
+            <line x1="0" y1="38" x2="100" y2="38" stroke="var(--border)" stroke-width="0.2" />
+            <polyline fill="none" stroke="var(--accent)" stroke-width="0.7" points="${pts}" />
+          </svg>
+          <div class="ytd-x-labels">${sorted
+            .map((r) => `<span>${escapeHtml((r.period || "").replace(/^\d{4}-/, ""))}</span>`)
+            .join("")}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderMonthlyTable() {
+    const mi = state.data.monthlyInsights;
+    if (!mi || !els.monthlyTableBody) return;
+    const all = mi.reports || [];
+    els.monthlyTableBody.innerHTML = all
+      .map((r) => {
+        const p = r.performance || {};
+        const pf = r.portfolio || {};
+        return `<tr>
+          <td>${escapeHtml(r.label || r.period || "")}</td>
+          <td>${fmtPct(p.mtdPct)}</td>
+          <td>${fmtPct(p.ytdPct)}</td>
+          <td>${fmtPct(p.ttmPct)}</td>
+          <td>${pf.leverage != null ? escapeHtml(String(pf.leverage)) : "—"}</td>
+          <td>${fmtNum(pf.aumUsdMil)}</td>
+        </tr>`;
+      })
+      .join("");
+  }
+
+  function renderMonthlyCards() {
+    const list = getMonthlyReports();
+    const q = state.monthlyQuery;
+    const total = (state.data.monthlyInsights && state.data.monthlyInsights.reports) || [];
+    let denom = total.length;
+    if (state.monthlyYear) {
+      denom = total.filter((r) => String(r.period || "").startsWith(state.monthlyYear)).length;
+    }
+    els.monthlyStatCount.textContent = String(list.length);
+    els.monthlyStatTotal.textContent = String(denom);
+
+    if (list.length === 0) {
+      els.monthlyCardGrid.innerHTML =
+        '<div class="empty-state">无匹配月报。请调整检索词或年份。</div>';
+      return;
+    }
+
+    els.monthlyCardGrid.innerHTML = list
+      .map((r) => {
+        const p = r.performance || {};
+        const pf = r.portfolio || {};
+        const themes = (r.themes || [])
+          .map((t) => `<li>${highlight(t, q)}</li>`)
+          .join("");
+        const bridges = (r.frameworkBridge || [])
+          .map(
+            (b) =>
+              `<button type="button" class="bridge-chip" data-bridge="${escapeHtml(b)}">${escapeHtml(b)}</button>`
+          )
+          .join(" ");
+        const stocks = getStocksForReport(r.id);
+        const stockRow =
+          stocks.length > 0
+            ? `<p class="category-label" style="margin-top:0.75rem;">本期涉及个股</p>
+          <div class="stock-mini-row">${stocks
+            .map(
+              (s) =>
+                `<button type="button" class="stock-mini-chip" data-stock-id="${escapeHtml(s.id)}">${escapeHtml(s.displayName)}</button>`
+            )
+            .join("")}</div>`
+            : "";
+        return `
+        <article class="card monthly-card">
+          <h2>${highlight(r.label || r.period, q)}</h2>
+          <div class="meta-row monthly-metrics">
+            <span class="badge">MTD ${fmtPct(p.mtdPct)}</span>
+            <span class="badge">YTD ${fmtPct(p.ytdPct)}</span>
+            <span class="badge">TTM ${fmtPct(p.ttmPct)}</span>
+            ${pf.leverage != null ? `<span class="badge">杠杆 ${escapeHtml(String(pf.leverage))}</span>` : ""}
+            ${pf.aumUsdMil != null ? `<span class="badge">AUM ${fmtNum(pf.aumUsdMil)}m</span>` : ""}
+          </div>
+          <p class="category-label" style="margin-top:0.75rem;">观点摘要</p>
+          <ul class="monthly-themes">${themes}</ul>
+          ${stockRow}
+          <p class="category-label" style="margin-top:0.75rem;">与随笔框架对照</p>
+          <div class="bridge-row">${bridges || "<span class=\"muted\">—</span>"}</div>
+        </article>`;
+      })
+      .join("");
+  }
+
+  function renderStockSidebar() {
+    const list = getFilteredStocks();
+    if (!els.stockList) return;
+    els.stockList.innerHTML = list
+      .map((s) => {
+        const n = (s.mentions || []).length;
+        const active = s.id === state.selectedStockId ? " stock-list-item-active" : "";
+        return `<button type="button" class="stock-list-item${active}" data-stock-id="${escapeHtml(s.id)}" role="option">
+          <span class="stock-list-name">${escapeHtml(s.displayName)}</span>
+          <span class="stock-list-meta">${n} 条</span>
+        </button>`;
+      })
+      .join("");
+    if (list.length === 0) {
+      els.stockList.innerHTML =
+        '<div class="empty-state" style="padding:1rem;">无匹配标的</div>';
+    }
+  }
+
+  function renderStockPanel() {
+    const sm = state.data.stockMentions;
+    if (!sm || !els.stockPanelIntro) return;
+    const essayMeta = sm.meta && sm.meta.essay;
+    els.stockPanelIntro.innerHTML = `
+      <p class="monthly-intro-lead"><strong>${escapeHtml((sm.meta && sm.meta.title) || "个股索引")}</strong></p>
+      <p class="monthly-intro-note">${escapeHtml((sm.meta && sm.meta.note) || "")}</p>
+      ${
+        essayMeta
+          ? `<p class="monthly-intro-note"><strong>随笔案例：</strong>${escapeHtml(essayMeta.title || "")}（${escapeHtml(essayMeta.source || "")}）</p>`
+          : ""
+      }
+    `;
+
+    const stock = getStocksArray().find((s) => s.id === state.selectedStockId);
+    if (!stock) {
+      els.stockMentionCount.textContent = "0";
+      els.stockDetail.innerHTML =
+        '<div class="empty-state">左侧选择一只个股，查看 <strong>月报</strong> 与 <strong>《风和投资随笔》</strong> 中的历史表述与操作类型。可从「随笔框架」词条卡片上的关联个股跳转，或从「月报」卡片标签进入。</div>';
+      return;
+    }
+
+    const mentions = (stock.mentions || []).slice().sort((a, b) => {
+      return mentionSortKey(a).localeCompare(mentionSortKey(b));
+    });
+    els.stockMentionCount.textContent = String(mentions.length);
+
+    const tickers = (stock.tickers || []).filter(Boolean).join(" · ") || "—";
+    const aliases = (stock.aliases || []).slice(0, 12).join(" · ");
+
+    const rows = mentions
+      .map((m, idx) => {
+        const st = m.stance || "";
+        const sc = stanceClass(st);
+        const src = m.source === "essay" ? "随笔" : "月报";
+        let periodCell = "";
+        if (m.reportId) {
+          periodCell = `<button type="button" class="linkish open-report" data-report-id="${escapeHtml(m.reportId)}">${escapeHtml(getReportLabel(m.reportId))}</button>`;
+        } else {
+          periodCell = `<span>${escapeHtml(m.essayTitle || "—")}</span> <span class="muted">(${escapeHtml(String(m.essayYear || ""))})</span>`;
+        }
+        const kwIds = m.relatedKeywordIds || [];
+        const kwBtns = kwIds
+          .map((kid) => {
+            const ent = state.data.entries.find((e) => e.id === kid);
+            if (!ent) return "";
+            return `<button type="button" class="kw-open-chip" data-kw-id="${escapeHtml(kid)}">${escapeHtml(ent.title)}</button>`;
+          })
+          .join(" ");
+        return `<tr>
+          <td>${idx + 1}</td>
+          <td>${escapeHtml(src)}</td>
+          <td>${periodCell}</td>
+          <td><span class="stance-tag ${sc}">${escapeHtml(st)}</span></td>
+          <td>${escapeHtml(m.action || "—")}</td>
+          <td class="stock-td-quote"><blockquote class="stock-quote">${escapeHtml(m.quote || m.summary || "")}</blockquote></td>
+          <td class="stock-td-kw">${kwBtns || "—"}</td>
+        </tr>`;
+      })
+      .join("");
+
+    els.stockDetail.innerHTML = `
+      <div class="stock-detail-head">
+        <h2 class="stock-detail-title">${escapeHtml(stock.displayName)}</h2>
+        <p class="stock-detail-sub muted">别名：${escapeHtml(aliases)}</p>
+        <p class="stock-detail-sub muted">代码：${escapeHtml(tickers)}</p>
+      </div>
+      <div class="monthly-table-wrap">
+        <table class="monthly-table stock-timeline-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>来源</th>
+              <th>月报期 / 随笔篇名</th>
+              <th>方向/类型</th>
+              <th>操作/性质</th>
+              <th>引用原文</th>
+              <th>关联框架词条</th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+    `;
+  }
+
+  function openMonthlyReport(reportId) {
+    state.monthlyQuery = reportId;
+    state.monthlyYear = null;
+    els.searchMonthly.value = reportId;
+    switchView("monthly");
+    renderYearChips();
+    renderMonthlyCards();
+  }
+
+  function selectStock(stockId) {
+    state.selectedStockId = stockId;
+    renderStockSidebar();
+    renderStockPanel();
+  }
+
+  function openFrameworkEntry(entryId) {
+    const ent =
+      state.data &&
+      state.data.entries &&
+      state.data.entries.find((e) => e.id === entryId);
+    if (!ent) return;
+    state.query = "";
+    state.categoryId = ent.category;
+    els.searchInput.value = "";
+    switchView("framework");
+    renderChips();
+    renderCards();
+    requestAnimationFrame(() => {
+      const card =
+        els.cardGrid &&
+        els.cardGrid.querySelector(`article.card[data-id="${entryId}"]`);
+      if (card) card.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+  }
+
+  function switchView(view) {
+    state.view = view;
+    document.querySelectorAll(".view-tab").forEach((btn) => {
+      const on = btn.dataset.view === view;
+      btn.classList.toggle("active", on);
+      btn.setAttribute("aria-selected", on ? "true" : "false");
+    });
+
+    const showFw = view === "framework";
+    const showMo = view === "monthly";
+    const showSt = view === "stocks";
+
+    els.sidebarFramework.classList.toggle("hidden", !showFw);
+    els.sidebarMonthly.classList.toggle("hidden", !showMo);
+    els.sidebarStocks.classList.toggle("hidden", !showSt);
+    els.panelFramework.classList.toggle("hidden", !showFw);
+    els.panelMonthly.classList.toggle("hidden", !showMo);
+    els.panelStocks.classList.toggle("hidden", !showSt);
+
+    if (showMo) {
+      renderMonthlyIntro();
+      renderMonthlyPerformanceCharts();
+      renderMonthlyTable();
+      renderYearChips();
+      renderMonthlyCards();
+    }
+    if (showSt) {
+      renderStockSidebar();
+      renderStockPanel();
+    }
+  }
+
+  function bindEvents() {
+    els.searchInput.addEventListener("input", (e) => {
+      state.query = e.target.value;
+      renderCards();
+    });
+
+    els.chipsContainer.addEventListener("click", (e) => {
+      const btn = e.target.closest(".chip");
+      if (!btn) return;
+      const cat = btn.dataset.category;
+      state.categoryId = cat === "" ? null : cat;
+      renderChips();
+      renderCards();
+    });
+
+    els.cardGrid.addEventListener("click", (e) => {
+      const chip = e.target.closest(".fw-stock-chip");
+      if (!chip || !chip.dataset.stockId) return;
+      e.preventDefault();
+      state.selectedStockId = chip.dataset.stockId;
+      state.stockQuery = "";
+      els.searchStock.value = "";
+      switchView("stocks");
+      renderStockSidebar();
+      renderStockPanel();
+    });
+
+    els.exportBtn.addEventListener("click", () => {
+      const list = getFilteredEntries();
+      const blob = new Blob([JSON.stringify(list, null, 2)], {
+        type: "application/json",
+      });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "fenghe-filtered-keywords.json";
+      a.click();
+      URL.revokeObjectURL(a.href);
+    });
+
+    els.viewTabs.addEventListener("click", (e) => {
+      const btn = e.target.closest(".view-tab");
+      if (!btn || !btn.dataset.view) return;
+      switchView(btn.dataset.view);
+    });
+
+    els.searchMonthly.addEventListener("input", (e) => {
+      state.monthlyQuery = e.target.value;
+      renderMonthlyCards();
+    });
+
+    els.yearChips.addEventListener("click", (e) => {
+      const btn = e.target.closest(".chip");
+      if (!btn) return;
+      const y = btn.dataset.year;
+      state.monthlyYear = y === "" ? null : y;
+      renderYearChips();
+      renderMonthlyCards();
+    });
+
+    els.exportMonthlyJson.addEventListener("click", () => {
+      const list = getMonthlyReports();
+      const blob = new Blob([JSON.stringify(list, null, 2)], {
+        type: "application/json",
+      });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "fenghe-filtered-monthly.json";
+      a.click();
+      URL.revokeObjectURL(a.href);
+    });
+
+    els.monthlyCardGrid.addEventListener("click", (e) => {
+      const bridge = e.target.closest(".bridge-chip");
+      if (bridge && bridge.dataset.bridge) {
+        const term = bridge.dataset.bridge;
+        state.query = term;
+        state.categoryId = null;
+        els.searchInput.value = term;
+        switchView("framework");
+        renderChips();
+        renderCards();
+        return;
+      }
+      const stockMini = e.target.closest(".stock-mini-chip");
+      if (stockMini && stockMini.dataset.stockId) {
+        state.selectedStockId = stockMini.dataset.stockId;
+        state.stockQuery = "";
+        els.searchStock.value = "";
+        switchView("stocks");
+        renderStockSidebar();
+        renderStockPanel();
+      }
+    });
+
+    els.searchStock.addEventListener("input", (e) => {
+      state.stockQuery = e.target.value;
+      renderStockSidebar();
+    });
+
+    els.stockList.addEventListener("click", (e) => {
+      const btn = e.target.closest(".stock-list-item");
+      if (!btn || !btn.dataset.stockId) return;
+      selectStock(btn.dataset.stockId);
+    });
+
+    els.stockDetail.addEventListener("click", (e) => {
+      const kw = e.target.closest(".kw-open-chip");
+      if (kw && kw.dataset.kwId) {
+        e.preventDefault();
+        openFrameworkEntry(kw.dataset.kwId);
+        return;
+      }
+      const btn = e.target.closest(".open-report");
+      if (!btn || !btn.dataset.reportId) return;
+      openMonthlyReport(btn.dataset.reportId);
+    });
+
+    els.exportStockJson.addEventListener("click", () => {
+      const stock = getStocksArray().find((s) => s.id === state.selectedStockId);
+      const payload = stock || getFilteredStocks();
+      const blob = new Blob([JSON.stringify(payload, null, 2)], {
+        type: "application/json",
+      });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = state.selectedStockId
+        ? "fenghe-stock-" + state.selectedStockId + ".json"
+        : "fenghe-stocks-filtered.json";
+      a.click();
+      URL.revokeObjectURL(a.href);
+    });
+  }
+
+  async function loadKnowledgeBase() {
+    if (typeof window.__FENGHE_KB__ === "object" && window.__FENGHE_KB__ !== null) {
+      return window.__FENGHE_KB__;
+    }
+    const resKw = await fetch("data/keywords.json");
+    if (!resKw.ok) throw new Error("无法加载 keywords.json");
+    const kw = await resKw.json();
+    let mi = { meta: {}, reports: [] };
+    let st = { meta: {}, stocks: [] };
+    try {
+      const resMi = await fetch("data/monthly-insights.json");
+      if (resMi.ok) mi = await resMi.json();
+    } catch (_) {}
+    try {
+      const resSt = await fetch("data/stock-mentions.json");
+      if (resSt.ok) st = await resSt.json();
+    } catch (_) {}
+    try {
+      const resEs = await fetch("data/essay-stock-mentions.json");
+      if (resEs.ok) {
+        const essay = await resEs.json();
+        st = mergeStockMentionsClientSide(st, essay);
+      }
+    } catch (_) {}
+    return { ...kw, monthlyInsights: mi, stockMentions: st };
+  }
+
+  async function init() {
+    els.searchInput = $("#search");
+    els.chipsContainer = $("#category-chips");
+    els.cardGrid = $("#card-grid");
+    els.statsCount = $("#stat-count");
+    els.statsTotal = $("#stat-total");
+    els.exportBtn = $("#export-json");
+    els.metaTitle = $("#meta-title");
+    els.metaSubtitle = $("#meta-subtitle");
+    els.viewTabs = $("#view-tabs");
+    els.sidebarFramework = $("#sidebar-framework");
+    els.sidebarMonthly = $("#sidebar-monthly");
+    els.sidebarStocks = $("#sidebar-stocks");
+    els.panelFramework = $("#panel-framework");
+    els.panelMonthly = $("#panel-monthly");
+    els.panelStocks = $("#panel-stocks");
+    els.searchMonthly = $("#search-monthly");
+    els.yearChips = $("#year-chips");
+    els.monthlyIntro = $("#monthly-intro");
+    els.monthlyTableBody = $("#monthly-table-body");
+    els.monthlyCardGrid = $("#monthly-card-grid");
+    els.monthlyStatCount = $("#monthly-stat-count");
+    els.monthlyStatTotal = $("#monthly-stat-total");
+    els.exportMonthlyJson = $("#export-monthly-json");
+    els.searchStock = $("#search-stock");
+    els.stockList = $("#stock-list");
+    els.stockPanelIntro = $("#stock-panel-intro");
+    els.stockDetail = $("#stock-detail");
+    els.stockMentionCount = $("#stock-mention-count");
+    els.exportStockJson = $("#export-stock-json");
+
+    state.data = await loadKnowledgeBase();
+
+    els.metaTitle.textContent = "风和投资-胡猛知识库";
+    const v = state.data.meta && state.data.meta.version;
+    els.metaSubtitle.textContent =
+      (state.data.meta && state.data.meta.title) +
+      " · " +
+      (state.data.meta && state.data.meta.source) +
+      (v ? " · v" + v : "");
+
+    if (!state.data.monthlyInsights || !state.data.monthlyInsights.reports) {
+      state.data.monthlyInsights = { meta: {}, reports: [] };
+    }
+    if (!state.data.stockMentions || !state.data.stockMentions.stocks) {
+      state.data.stockMentions = { meta: {}, stocks: [] };
+    }
+
+    renderChips();
+    renderCards();
+    renderMonthlyIntro();
+    renderMonthlyPerformanceCharts();
+    renderMonthlyTable();
+    renderYearChips();
+    renderMonthlyCards();
+    renderStockSidebar();
+    renderStockPanel();
+    bindEvents();
+  }
+
+  init().catch((err) => {
+    console.error(err);
+    const grid = document.getElementById("card-grid");
+    if (!grid) return;
+    const fileHint =
+      typeof location !== "undefined" && location.protocol === "file:"
+        ? "本地 <code>file://</code> 打开时浏览器禁止用 fetch 读取 <code>data/*.json</code>，因此<strong>必须</strong>存在已嵌入数据的 <code>js/data.js</code>（运行 <code>scripts/embed-data.py</code>），或改用同目录的 <code>index.standalone.html</code>。"
+        : "请运行 <code>scripts/embed-data.py</code> 生成 <code>js/data.js</code>，并确认可通过 HTTP 访问 <code>data/*.json</code>。";
+    grid.innerHTML =
+      "<div class=\"empty-state\">加载失败。" + fileHint + "</div>";
+  });
+})();
+
+</script>
+    <script>
+      (function () {
+        function checkAssets() {
+          var link = document.querySelector('link[href*="dashboard.css"]');
+          var cssOk;
+          if (link) {
+            cssOk = !!link.sheet;
+          } else {
+            cssOk = document.querySelectorAll("head > style").length >= 2;
+          }
+          var dataOk =
+            typeof window.__FENGHE_KB__ === "object" && window.__FENGHE_KB__ !== null;
+          if (!cssOk || !dataOk) {
+            var w = document.getElementById("kb-asset-warning");
+            if (w) {
+              w.hidden = false;
+              w.classList.add("show");
+            }
+          }
+        }
+        window.addEventListener("load", checkAssets);
+      })();
+    </script>
+  </body>
+</html>

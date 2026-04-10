@@ -1,0 +1,209 @@
+{
+  "meta": {
+    "title": "《风和投资随笔1》个股与交易案例",
+    "source": "胡猛 著 — 目录与篇章案例提炼",
+    "note": "与月报索引合并展示；篇名为书中标题。「引用原文」为书中可核对摘录或引述，回查请以原书为准。"
+  },
+  "stocks": [
+    {
+      "id": "netease",
+      "displayName": "网易",
+      "aliases": ["网易", "NetEase", "NTES"],
+      "tickers": ["NTES", "9999.HK"],
+      "mentions": [
+        {
+          "essayTitle": "我们为什么做空网易？",
+          "essayYear": "2018",
+          "stance": "short",
+          "action": "做空案例",
+          "quote": "专章讨论做空逻辑：基本面与市场定价、游戏业务等语境下的空头论证（书中案例，非当前持仓暗示）。",
+          "relatedKeywordIds": ["short-earnings", "party-theory", "dual-kill"]
+        }
+      ]
+    },
+    {
+      "id": "gsx",
+      "displayName": "跟谁学 / 高途",
+      "aliases": ["跟谁学", "GSX", "高途", "Gaotu"],
+      "tickers": ["GOTU"],
+      "mentions": [
+        {
+          "essayTitle": "我们为什么做空「跟谁学」",
+          "essayYear": "2020",
+          "stance": "short",
+          "action": "做空案例",
+          "quote": "教育与在线赛道上的做空分析框架示范，与盈利预期、商业模式验证相关讨论。",
+          "relatedKeywordIds": ["short-earnings", "internet-caution", "certainty"]
+        },
+        {
+          "essayTitle": "再谈「跟谁学」",
+          "essayYear": "2020",
+          "stance": "short",
+          "action": "跟踪",
+          "quote": "对同一标的的持续论证与边际变化观察。",
+          "relatedKeywordIds": ["short-earnings", "t-framework"]
+        }
+      ]
+    },
+    {
+      "id": "jd",
+      "displayName": "京东 JD.com",
+      "aliases": ["京东", "JD.com", "JD"],
+      "tickers": ["JD", "9618.HK"],
+      "mentions": [
+        {
+          "essayTitle": "逆势投资与京东",
+          "essayYear": "2017",
+          "stance": "long",
+          "action": "逆势多头案例",
+          "quote": "逆势买入与基本面研究的结合案例，用于说明「逆短期、顺长期」的操作语境。",
+          "relatedKeywordIds": ["fenghe-philosophy", "certainty", "bottom-up"]
+        }
+      ]
+    },
+    {
+      "id": "weichai",
+      "displayName": "潍柴动力",
+      "aliases": ["潍柴", "潍柴动力", "Weichai", "2338"],
+      "tickers": ["2338.HK", "000338.SZ"],
+      "mentions": [
+        {
+          "essayTitle": "踩烂理论",
+          "essayYear": "2015",
+          "stance": "short",
+          "action": "空头持仓语境",
+          "quote": "文中以潍柴等为例说明「踩烂」与静态估值陷阱：盈利仍可继续恶化时的做空持有逻辑。",
+          "relatedKeywordIds": ["step-on-bad", "m3-margin", "party-theory"]
+        }
+      ]
+    },
+    {
+      "id": "futu",
+      "displayName": "富途控股",
+      "aliases": ["富途", "Futu", "FUTU"],
+      "tickers": ["FUTU"],
+      "mentions": [
+        {
+          "essayTitle": "进退自如",
+          "essayYear": "2021",
+          "stance": "long",
+          "action": "建仓/减仓纪律",
+          "quote": "仓位上限、涨幅与风控纪律案例，体现「价值交易者」与权重管理。",
+          "relatedKeywordIds": ["value-anchor", "three-low", "hit-rate"]
+        }
+      ]
+    },
+    {
+      "id": "hkex",
+      "displayName": "香港交易所",
+      "aliases": ["港交所", "HKEX", "香港交易所"],
+      "tickers": ["0388.HK"],
+      "mentions": [
+        {
+          "essayTitle": "关于港交所的对话",
+          "essayYear": "2017",
+          "stance": "long",
+          "action": "分析/比较",
+          "quote": "垄断 beta 与平台价值的讨论，与后续选择线上券商链条标的的思路对照。",
+          "relatedKeywordIds": ["value-anchor", "mainstream-crowded"]
+        }
+      ]
+    },
+    {
+      "id": "largan",
+      "displayName": "大立光",
+      "aliases": ["大立光", "Largan"],
+      "tickers": ["3008.TW"],
+      "mentions": [
+        {
+          "essayTitle": "再谈做空 / 周期与结构",
+          "essayYear": "2020",
+          "stance": "short",
+          "action": "周期做空",
+          "quote": "手机镜头周期与 6P  commoditization、竞争报价导致利润率下行——与月报 2020 镜头链论述同一产业逻辑线。",
+          "relatedKeywordIds": ["cyclical-short", "m3-margin", "dual-kill"]
+        }
+      ]
+    },
+    {
+      "id": "sunny-optical",
+      "displayName": "舜宇光学",
+      "aliases": ["舜宇", "舜宇光学", "Sunny Optical"],
+      "tickers": ["2382.HK"],
+      "mentions": [
+        {
+          "essayTitle": "再谈做空",
+          "essayYear": "2020",
+          "stance": "short",
+          "action": "周期做空",
+          "quote": "镜头产业链竞争与降价周期中的空头分析语境。",
+          "relatedKeywordIds": ["cyclical-short", "m3-margin"]
+        }
+      ]
+    },
+    {
+      "id": "mediatek",
+      "displayName": "联发科",
+      "aliases": ["联发科", "MediaTek", "MTK"],
+      "tickers": ["2454.TW"],
+      "mentions": [
+        {
+          "essayTitle": "组合与回撤（多篇语境）",
+          "essayYear": "2015",
+          "stance": "short",
+          "action": "历史空头贡献",
+          "quote": "随笔中列举成功做空案例时提及联发科等（台湾科技硬件）。",
+          "relatedKeywordIds": ["true-hedge-fund", "hit-rate"]
+        }
+      ]
+    },
+    {
+      "id": "wynn-macau",
+      "displayName": "永利澳门",
+      "aliases": ["永利澳门", "Wynn Macau", "WYNN"],
+      "tickers": ["1128.HK", "WYNN"],
+      "mentions": [
+        {
+          "essayTitle": "回撤与做空（澳门博彩语境）",
+          "essayYear": "2017",
+          "stance": "short",
+          "action": "周期/结构性做空",
+          "quote": "贵宾厅与澳门博彩周期的做空线索，与月报中澳门赌场周期叙事一致。",
+          "relatedKeywordIds": ["cyclical-short", "m3-margin", "party-theory"]
+        }
+      ]
+    },
+    {
+      "id": "samsung-elec",
+      "displayName": "三星电子 Samsung Electronics",
+      "aliases": ["Samsung", "三星电子", "Samsung Electronics"],
+      "tickers": ["005930.KS"],
+      "mentions": [
+        {
+          "essayTitle": "为什么是台湾？ / 三星，一个经典的逆势投资案例",
+          "essayYear": "2016",
+          "stance": "long",
+          "action": "逆势案例",
+          "quote": "三星作为逆势投资经典案例的篇章，与产业链研究方法论挂钩。",
+          "relatedKeywordIds": ["fenghe-philosophy", "cyclical-short"]
+        }
+      ]
+    },
+    {
+      "id": "leeco",
+      "displayName": "乐视",
+      "aliases": ["乐视", "LeEco", "贾跃亭"],
+      "tickers": [],
+      "mentions": [
+        {
+          "essayTitle": "关于乐视与贾跃亭",
+          "essayYear": "2017",
+          "stance": "short",
+          "action": "风险/叙事",
+          "quote": "对高预期、高融资与基本面脱节的讨论，用作风险管理与「宴席」隐喻的补充案例。",
+          "relatedKeywordIds": ["party-theory", "short-earnings", "uncertainty"]
+        }
+      ]
+    }
+  ]
+}
