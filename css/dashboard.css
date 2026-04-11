@@ -280,6 +280,38 @@ input[type="search"]:focus {
   margin-bottom: 0.6rem;
 }
 
+.card .entry-definition {
+  margin: 0 0 0.75rem;
+  padding: 0.65rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid rgba(61, 154, 237, 0.4);
+  background: rgba(61, 154, 237, 0.09);
+}
+
+.card .def-label {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+
+.card .def-body {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.58;
+  color: var(--text);
+}
+
+.card .summary-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin: 0 0 0.3rem;
+  letter-spacing: 0.04em;
+}
+
 .badge {
   font-size: 0.7rem;
   padding: 0.15rem 0.45rem;

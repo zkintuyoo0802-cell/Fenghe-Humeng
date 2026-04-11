@@ -53,6 +53,7 @@
     const hay = [
       entry.title,
       entry.summary,
+      entry.definition || "",
       entry.logicRole || "",
       (entry.tags || []).join(" "),
       (entry.aliases || []).join(" "),
@@ -285,6 +286,15 @@
         const relRow = relStocks
           ? `<p class="category-label" style="margin-top:0.65rem;">关联个股（随笔/月报索引）</p><div class="bridge-row">${relStocks}</div>`
           : "";
+        const defBlock = entry.definition
+          ? `<div class="entry-definition" role="region" aria-label="随笔语境下的定义">
+          <span class="def-label">概念定义</span>
+          <p class="def-body">${highlight(entry.definition, q)}</p>
+        </div>`
+          : "";
+        const summaryBlock = entry.definition
+          ? `<p class="summary-label">要点摘要</p><p class="summary">${highlight(entry.summary, q)}</p>`
+          : `<p class="summary">${highlight(entry.summary, q)}</p>`;
         return `
         <article class="card" data-id="${escapeHtml(entry.id)}">
           <h2>${highlight(entry.title, q)}</h2>
@@ -292,7 +302,8 @@
             <span class="badge">${escapeHtml(catLabel)}</span>
             ${entry.logicRole ? `<span class="badge logic">${highlight(entry.logicRole, q)}</span>` : ""}
           </div>
-          <p class="summary">${highlight(entry.summary, q)}</p>
+          ${defBlock}
+          ${summaryBlock}
           <div class="aliases"><strong style="color:var(--muted);font-size:0.75rem;">别名 / 检索词：</strong></div>
           <div class="aliases">${aliases}</div>
           ${relRow}
