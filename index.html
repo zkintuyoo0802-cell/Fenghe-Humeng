@@ -14,7 +14,7 @@
         background: #fef2f2;
         border-bottom: 2px solid #ef4444;
         color: #111;
-        font: 14px/1.55 system-ui, -apple-system, sans-serif;
+        font: 14px/1.55 "Microsoft YaHei", "微软雅黑", sans-serif;
       }
       #kb-asset-warning.show {
         display: block;
@@ -38,6 +38,10 @@
     <header class="app-header">
       <h1 id="meta-title">风和投资-胡猛知识库</h1>
       <p class="subtitle" id="meta-subtitle"></p>
+      <p class="public-link-wrap" id="public-link-wrap" hidden>
+        <span class="public-link-label">线上访问</span>
+        <a id="public-url-link" href="#" target="_blank" rel="noopener noreferrer"></a>
+      </p>
       <nav class="view-tabs" id="view-tabs" aria-label="视图切换">
         <button type="button" class="view-tab active" data-view="framework" aria-selected="true">
           随笔研究框架
@@ -167,7 +171,8 @@
           <ul class="site-footer-list">
             <li><strong>推荐转发（单文件）：</strong>运行 <code>python scripts/build-standalone.py</code> 生成 <code>index.standalone.html</code>，只发该文件即可；内联样式与数据，双击即可用，不依赖子文件夹。</li>
             <li><strong>文件夹版：</strong>将整个 <code>fenghe-dashboard</code> 打 ZIP（须包含 <code>css/</code>、<code>js/</code>、<code>data/</code>），解压后双击 <code>index.html</code>。勿只复制单个 HTML。</li>
-            <li><strong>可选在线托管：</strong>将该文件夹上传到 GitHub Pages、Cloudflare Pages、Netlify 等任意静态托管，即可通过网址访问（HTTP 模式下需 <code>data/keywords.json</code> 与 <code>data/monthly-insights.json</code>）。</li>
+            <li><strong>线上地址：</strong>页顶链接来自 <code>data/keywords.json</code> 的 <code>meta.publicUrl</code>；修改后请运行 <code>embed-data.py</code> 并提交 <code>js/data.js</code>。</li>
+            <li><strong>GitHub Pages（无 Actions / 公司限制）：</strong>在仓库 <strong>Settings → Pages</strong> 中选 <strong>Deploy from a branch</strong>，分支选 <code>main</code>，目录选仓库根目录 <code>/ (root)</code>，并确保已推送完整 <code>index.html</code>、<code>css/</code>、<code>js/data.js</code>、<code>js/dashboard.js</code>、<code>data/</code>。若策略要求必须从 <code>/docs</code> 发布：先 <code>python scripts/embed-data.py</code>，再 <code>python scripts/copy-site-to-docs.py</code>，然后提交 <code>docs/</code> 下文件。</li>
           </ul>
           <p class="site-footer-meta">数据：<code>scripts/embed-data.py</code> 合并 JSON → <code>js/data.js</code>。单文件版：<code>embed-data.py</code> 后运行 <code>python scripts/build-standalone.py</code>。离线双击 <code>index.html</code> 时浏览器不允许用 <code>fetch</code> 读本地 JSON，故必须存在已嵌入数据的 <code>js/data.js</code> 或使用 <code>index.standalone.html</code>。</p>
         </footer>

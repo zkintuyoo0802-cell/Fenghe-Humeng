@@ -844,6 +844,8 @@
     els.exportBtn = $("#export-json");
     els.metaTitle = $("#meta-title");
     els.metaSubtitle = $("#meta-subtitle");
+    els.publicLinkWrap = $("#public-link-wrap");
+    els.publicUrlLink = $("#public-url-link");
     els.viewTabs = $("#view-tabs");
     els.sidebarFramework = $("#sidebar-framework");
     els.sidebarMonthly = $("#sidebar-monthly");
@@ -875,6 +877,22 @@
       " · " +
       (state.data.meta && state.data.meta.source) +
       (v ? " · v" + v : "");
+
+    const pub =
+      state.data.meta &&
+      state.data.meta.publicUrl &&
+      String(state.data.meta.publicUrl).trim();
+    if (pub && els.publicUrlLink && els.publicLinkWrap) {
+      els.publicUrlLink.href = pub;
+      try {
+        const u = new URL(pub);
+        els.publicUrlLink.textContent =
+          u.host + (u.pathname === "/" || u.pathname === "" ? "" : u.pathname);
+      } catch {
+        els.publicUrlLink.textContent = pub.replace(/^https?:\/\//i, "");
+      }
+      els.publicLinkWrap.hidden = false;
+    }
 
     if (!state.data.monthlyInsights || !state.data.monthlyInsights.reports) {
       state.data.monthlyInsights = { meta: {}, reports: [] };

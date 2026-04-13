@@ -2,7 +2,8 @@ window.__FENGHE_KB__ = {
   "meta": {
     "title": "风和投资随笔 · 逻辑关键词检索",
     "source": "《风和投资随笔1》胡猛 — 框架整理版",
-    "version": "1.0.0"
+    "version": "1.0.1",
+    "publicUrl": "https://zkintuyoo0802-cell.github.io/Fenghe-Humeng/"
   },
   "categories": [
     {
@@ -39,6 +40,11 @@ window.__FENGHE_KB__ = {
       "id": "metaphor",
       "label": "人物与比喻",
       "order": 7
+    },
+    {
+      "id": "talks",
+      "label": "访谈与实录",
+      "order": 8
     }
   ],
   "entries": [
@@ -917,6 +923,169 @@ window.__FENGHE_KB__ = {
       "logicRole": "价值观",
       "seeAlso": [],
       "definition": "善良的投资者：在泡沫中不把最后一棒甩给更弱者；与风险管理并列的伦理自觉。"
+    },
+    {
+      "id": "pku-chang-qiu-talk",
+      "category": "talks",
+      "title": "北大价值投资课堂 · 胡猛访谈（总录）",
+      "aliases": [
+        "北大",
+        "常劲",
+        "投机",
+        "价值投资课堂",
+        "风和亚洲"
+      ],
+      "tags": [
+        "访谈",
+        "投机",
+        "风控"
+      ],
+      "summary": "胡猛在常劲主持的价值投资课堂上系统区分投机与投资、借「人遛狗」谈 E 与 P/E、强调怀疑市场与怀疑自己、止损与 gross 纪律、中周期 T2（3～18 个月）、批判 Pair Trade 对冲掉行业周期、以及做空的右侧原则等；可与《随笔》框架及月报风险管理叙述对照。",
+      "logicRole": "实录 · 总览",
+      "seeAlso": [
+        "pku-spec-invest-border",
+        "pku-emotion-fundamental",
+        "stop-loss",
+        "pair-trade"
+      ],
+      "definition": "语境：面向未来可能从事二级市场工作的学生；主讲者自述管理风和亚洲多空对冲基金，以「投机者」身份分享与价值投资并置的纪律与心理结构（非鼓励频繁交易）。"
+    },
+    {
+      "id": "pku-spec-invest-border",
+      "category": "talks",
+      "title": "访谈中的「投机」与「投资」",
+      "aliases": [
+        "投机",
+        "投资",
+        "价格差",
+        "资产负债表"
+      ],
+      "tags": [
+        "定义",
+        "受托责任"
+      ],
+      "summary": "回报若主要依赖同一标的在不同时间的价格差，归为投机；若资金进入企业资产负债表、回报来自内在价值增长与分红而非市价波动，则更接近投资。二者边界随持有期拉长而模糊。",
+      "logicRole": "概念分界",
+      "seeAlso": [
+        "value-anchor",
+        "pku-chang-qiu-talk"
+      ],
+      "definition": "访谈给出的操作化区分：投机赚的是「时点价差」；投资赚的是公司内在价值累积（分红实现利润）。持有一年以内情绪主导更大，持有八年十年则内在价值权重上升。"
+    },
+    {
+      "id": "pku-emotion-fundamental",
+      "category": "talks",
+      "title": "人·狗·E 与 P/E（访谈）",
+      "aliases": [
+        "人遛狗",
+        "E",
+        "市盈率",
+        "情绪"
+      ],
+      "tags": [
+        "3D",
+        "定价"
+      ],
+      "summary": "借「人遛狗」：投机者盈亏取决于「狗」（价格），但须理解「人」（基本面）的位置。一年内 P/E 受情绪驱动可远大于 E 的变化；优秀投机者需同时做基本面研究与市场情绪研判，并区分逆势与顺势场景。",
+      "logicRole": "定价心理",
+      "seeAlso": [
+        "d3",
+        "t-framework",
+        "pku-chang-qiu-talk"
+      ],
+      "definition": "访谈强调：一年维度内情绪对股价影响可能远大于基本面（举例讨论 12 个月内基本面贡献与情绪贡献的占比）；职业评价若取决于短期市价，则实质更接近投机。"
+    },
+    {
+      "id": "pku-skeptic-stop",
+      "category": "talks",
+      "title": "怀疑市场、怀疑自己 · 与止损纪律",
+      "aliases": [
+        "怀疑自己",
+        "2.5%",
+        "回撤",
+        "gross"
+      ],
+      "tags": [
+        "纪律",
+        "风控"
+      ],
+      "summary": "第一怀疑市场给出的定价；第二怀疑自己——优秀基金经理「满脸疑虑」。组合出现约 2.5% 回撤即严格止损并减仓；分散于多市场多行业多空，使单次回撤可控。止损是承受度管理，非先证明「判断错了」。",
+      "logicRole": "执行",
+      "seeAlso": [
+        "stop-loss",
+        "gross-net",
+        "pku-chang-qiu-talk"
+      ],
+      "definition": "访谈原意：人对未来判断多数不靠谱，时间维度上须谦卑；止损触发后先执行纪律再复盘，避免亏损中的认知偏见。"
+    },
+    {
+      "id": "pku-t2-window",
+      "category": "talks",
+      "title": "中周期 T2：3～18 个月（访谈）",
+      "aliases": [
+        "T2",
+        "中周期",
+        "3个月",
+        "18个月"
+      ],
+      "tags": [
+        "3T",
+        "盈利预测"
+      ],
+      "summary": "公司内部对长中短周期作 T1/T2/T3 划分；实务最关注 T2（约 3～18 个月）。短于 3 个月的股价波动视为难预测；长于 18 个月预测难度亦高。盈利模型多聚焦可见的近两三年盈利。",
+      "logicRole": "时间框架",
+      "seeAlso": [
+        "t-framework",
+        "patrick",
+        "pku-chang-qiu-talk"
+      ],
+      "definition": "与《随笔》3T 并列的口语化窗口：滚动审视 3～18 个月内可能发生的基本面与市场事件，而非一次性预测「周期长度」。"
+    },
+    {
+      "id": "pku-anti-pair-trade",
+      "category": "talks",
+      "title": "为何不提倡 Pair Trade（访谈案例）",
+      "aliases": [
+        "配对交易",
+        "南航",
+        "国航",
+        "行业周期"
+      ],
+      "tags": [
+        "对冲",
+        "行业"
+      ],
+      "summary": "周期股收益来源常被拆解为企业自身 / 市场 Beta / 行业周期；行业内多空配对易把最大头的行业周期利润对冲掉，却承担双边名义风险与有限价差收益，得不偿失。行业判断往往比个股差异更易把握，不宜用配对消掉。",
+      "logicRole": "对冲辨析",
+      "seeAlso": [
+        "pair-trade",
+        "cyclical-short",
+        "pku-chang-qiu-talk"
+      ],
+      "definition": "访谈立场：在多空实践中不提倡以「做多 A 做空同行业 B」替代对行业周期与个股基本面的独立论证（与月报中亚洲 Pair Trade 局限叙事一致）。"
+    },
+    {
+      "id": "pku-short-discipline",
+      "category": "talks",
+      "title": "做空纪律：右侧、多米诺与企业家对手",
+      "aliases": [
+        "做空",
+        "右侧",
+        "泡沫",
+        "多米诺"
+      ],
+      "tags": [
+        "做空",
+        "数学"
+      ],
+      "summary": "做多可在左侧承担不确定性换取高倍回报；做空宜在右侧——等「第一张多米诺骨牌倒下」、确定性更高时再介入，避免在顶部猜顶。做空时企业家是对手盘，需警惕其去库存、降本等自救；确认无法挽救局面后再行动。",
+      "logicRole": "空头方法论",
+      "seeAlso": [
+        "short-earnings",
+        "step-on-bad",
+        "pku-chang-qiu-talk"
+      ],
+      "definition": "访谈用数学直觉说明：顶部做空的赔率与做多承担不确定性不同；强调「止赚不止损」的表述在实务中需结合组合规则理解，与基金以止损控风险的主线并行。"
     }
   ],
   "monthlyInsights": {
@@ -1240,6 +1409,33 @@ window.__FENGHE_KB__ = {
           "不确定性",
           "自下而上"
         ]
+      },
+      {
+        "id": "202603",
+        "period": "2026-03",
+        "label": "2026年3月",
+        "performance": {
+          "mtdPct": -5.31,
+          "ytdPct": 11.55,
+          "ttmPct": 35.88
+        },
+        "portfolio": {
+          "leverage": 0.54,
+          "aumUsdMil": 8672.3
+        },
+        "themes": [
+          "伊朗局势升级引发能源价格与市场波动；MSCI Asia 单月约 -13.3%；组合净回报约 -5.3%，YTD 仍约 +11.5%，体现相对韧性。",
+          "月初止损机制触发：一周内将 gross 自约 93% 降至约 64%，月末约 54%；重申以 gross（非仅 net）度量组合风险、在回撤中减少情绪偏见。",
+          "回撤主要来自多头贡献回吐；宁德时代为当月多头突出贡献并成为最大多头；空头有正贡献，但来自自下而上独立持仓（本田、TDK、小米等），非应激加仓。",
+          "信末引用：「It's the earnings, stupid.」— 地缘与头条驱动价格时，仍强调盈利最终会回归定价核心。"
+        ],
+        "frameworkBridge": [
+          "止损",
+          "总头寸",
+          "自下而上",
+          "做空与对冲",
+          "确定性"
+        ]
       }
     ]
   },
@@ -1321,6 +1517,13 @@ window.__FENGHE_KB__ = {
             "stance": "long",
             "action": "案例",
             "quote": "作为 A 股盈利逆势成长的典型样本，与恒瑞并列说明「宏观弱、公司强」。",
+            "source": "monthly"
+          },
+          {
+            "reportId": "202603",
+            "stance": "long",
+            "action": "最大多头",
+            "quote": "信中写为全球电动化与储能受益者，规模、成本、技术领导地位及与全球 OEM 深度整合构成护城河；海外占比、单车带电量与创新支撑盈利能见度；现为组合最大多头。",
             "source": "monthly"
           }
         ]
@@ -1546,6 +1749,13 @@ window.__FENGHE_KB__ = {
             "action": "持仓",
             "quote": "信中称目前持有 28 个中国公司多头之一，作为逆境中仍具活力与创新力的代表。",
             "source": "monthly"
+          },
+          {
+            "reportId": "202603",
+            "stance": "short",
+            "action": "空头",
+            "quote": "空头逻辑：内存等原材料成本侵蚀消费电子利润率；更强调市场低估汽车业务在质量与成本结构上的挑战——从消费电子跨入汽车制造属结构性难度，非单纯周期问题。",
+            "source": "monthly"
           }
         ]
       },
@@ -1664,6 +1874,13 @@ window.__FENGHE_KB__ = {
             "source": "monthly"
           },
           {
+            "reportId": "202603",
+            "stance": "long",
+            "action": "回撤",
+            "quote": "列为当月主要亏损多头之一；信中表示年内仍为正贡献。",
+            "source": "monthly"
+          },
+          {
             "essayTitle": "为什么是台湾？ / 三星，一个经典的逆势投资案例",
             "essayYear": "2016",
             "stance": "long",
@@ -1723,6 +1940,13 @@ window.__FENGHE_KB__ = {
             "action": "贡献",
             "quote": "MLCC 链条定价与供需改善，多头表现好；科技供应链覆盖延伸至更多 A 股标的。",
             "source": "monthly"
+          },
+          {
+            "reportId": "202603",
+            "stance": "long",
+            "action": "回撤",
+            "quote": "与三星电子等列为当月主要亏损多头之一；年内仍为正贡献。",
+            "source": "monthly"
           }
         ]
       },
@@ -1765,6 +1989,13 @@ window.__FENGHE_KB__ = {
             "stance": "long",
             "action": "贡献",
             "quote": "与三环一并作为 MLCC/电子元件链条多头贡献。",
+            "source": "monthly"
+          },
+          {
+            "reportId": "202603",
+            "stance": "long",
+            "action": "回撤",
+            "quote": "与三星、三环等列为当月主要亏损多头之一。",
             "source": "monthly"
           }
         ]
@@ -1824,6 +2055,50 @@ window.__FENGHE_KB__ = {
             "stance": "thematic",
             "action": "估值讨论",
             "quote": "作为 AI 估值与预期超前于现金流的讨论案例。",
+            "source": "monthly"
+          }
+        ]
+      },
+      {
+        "id": "honda",
+        "displayName": "本田汽车 Honda Motor",
+        "aliases": [
+          "Honda",
+          "本田",
+          "本田技研",
+          "7267"
+        ],
+        "tickers": [
+          "7267.T",
+          "HMC"
+        ],
+        "mentions": [
+          {
+            "reportId": "202603",
+            "stance": "short",
+            "action": "空头",
+            "quote": "空头：认为市场对其适应摩托/汽车电动化、高端化等结构性变化过于乐观；摩托与汽车市场份额承压，电动化响应偏慢——为自去年以来持续管理的空头思路。",
+            "source": "monthly"
+          }
+        ]
+      },
+      {
+        "id": "tdk",
+        "displayName": "TDK",
+        "aliases": [
+          "TDK",
+          "6762"
+        ],
+        "tickers": [
+          "6762.T",
+          "TTDKY"
+        ],
+        "mentions": [
+          {
+            "reportId": "202603",
+            "stance": "short",
+            "action": "周期空头",
+            "quote": "空头：市场对其手机相关电池等业务预期偏高；共识对 2026 年出货量假设相对需求偏乐观，属供应链认知下的周期空头。",
             "source": "monthly"
           }
         ]
