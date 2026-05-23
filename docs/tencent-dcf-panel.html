@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>腾讯 DCF · 0700.HK</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --surface: #1a2332;
+      --border: #2d3a4d;
+      --text: #e8edf4;
+      --muted: #8b9cb3;
+      --accent: #3d9aed;
+      --good: #4ade80;
+      --font: "Microsoft YaHei", "微软雅黑", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    h1 { font-size: 1.35rem; margin: 0 0 8px; }
+    .meta { color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; }
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .kpi {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+    .kpi label { display: block; color: var(--muted); font-size: 0.8rem; margin-bottom: 4px; }
+    .kpi .val { font-size: 1.15rem; font-weight: 600; color: var(--accent); }
+    .kpi .sub { font-size: 0.85rem; color: var(--muted); margin-top: 4px; }
+    section { margin-bottom: 24px; }
+    h2 { font-size: 1.05rem; margin: 0 0 10px; color: var(--muted); font-weight: 600; }
+    .table-wrap { overflow: auto; border: 1px solid var(--border); border-radius: 8px; }
+    table { border-collapse: collapse; width: 100%; font-size: 0.88rem; }
+    th, td { padding: 8px 10px; text-align: right; border-bottom: 1px solid var(--border); }
+    th:first-child, td:first-child { text-align: left; }
+    th { background: var(--surface); color: var(--muted); font-weight: 600; }
+    tr:last-child td { border-bottom: none; }
+    .hint { color: var(--muted); font-size: 0.85rem; margin-top: 16px; }
+    h3.subh { font-size: 0.95rem; margin: 16px 0 8px; color: var(--text); font-weight: 600; }
+    p.biz-note { color: var(--muted); font-size: 0.85rem; margin: 0 0 12px; line-height: 1.55; }
+  </style>
+</head>
+<body>
+  <h1 id="panel-title">腾讯 DCF · 0700.HK</h1>
+  <p class="meta" id="panel-meta"></p>
+  <div class="kpi-grid" id="kpi"></div>
+  <section id="sec-business" style="display:none">
+    <h2>各业务拆分</h2>
+    <p class="biz-note" id="biz-note"></p>
+    <h3 class="subh">基准期归属与分项逐年增速</h3>
+    <div class="table-wrap"><table id="tb-biz-base"></table></div>
+    <h3 class="subh">预测期合并 FCF 按权重拆分（十亿 CNY）</h3>
+    <div class="table-wrap"><table id="tb-biz-yearly"></table></div>
+    <h3 class="subh">分项独立复利路径（示意，十亿 CNY）</h3>
+    <div class="table-wrap"><table id="tb-biz-roll"></table></div>
+  </section>
+  <section id="sec-segment" style="display:none">
+    <h2>分项增速（加权）</h2>
+    <div class="table-wrap"><table id="tb-segment"></table></div>
+  </section>
+  <section>
+    <h2>预测 FCF 与终值</h2>
+    <div class="table-wrap"><table id="tb-fcf"></table></div>
+  </section>
+  <section id="sec-inv-bd" style="display:none">
+    <h2>投资业务资产（表内分项，十亿 CNY）</h2>
+    <div class="table-wrap"><table id="tb-inv"></table></div>
+  </section>
+  <p class="hint">数据来自 Yahoo Finance 与脚本假设；不构成投资建议。可重新运行 <code>python tencent_dcf.py --forecast segment --export-panel</code> 更新。</p>
+  <script type="application/json" id="dcf-panel-data">{"generatedAt": "2026-04-13T11:42:01Z", "ticker": "0700.HK", "meta": {"forecast_mode": "业务分项加权", "split_investment": true, "wacc": 0.1, "terminal_g": 0.03, "years": 10, "segment_yoy_source": "MS Main 第6–9行分部收入YoY（含Others/投资及其他；xlsm 或内置回退）"}, "summary": {"baseline_fcf_bn": 190.171, "fcf_operating_bn": 174.95732, "investment_fcf_share": 0.08, "net_debt_bn": 246.692, "ev_bn": 3844.7818271269884, "equity_operating_bn": 3598.0898271269884, "investment_nav_bn": 984.138, "equity_total_bn": 4582.227827126988, "equity_bn": 4582.227827126988, "shares_bn": 9.036899022, "cny_per_hkd": 0.8725241788590691, "per_share_hkd": 581.138674079572, "per_share_hkd_operating": 456.3258812617363, "spot_hkd": 490.0}, "segment_detail": {"columns": ["加权FCF增速", "增值服务(VAS/游戏社交)(分项增速)", "营销服务(广告)(分项增速)", "金融科技与企业服务(分项增速)", "投资及其他(MS Main Others收入YoY)(分项增速)"], "index": ["第1年", "第2年", "第3年", "第4年", "第5年", "第6年", "第7年", "第8年", "第9年", "第10年"], "data": [[0.12949052199694494, 0.15701135452175663, 0.1944320859492148, 0.08246522863235772, 0.040984662972032515], [0.09702660703535505, 0.07181940040240353, 0.17500000000000004, 0.10518926929195627, 0.030000000000000027], [0.09195487377816372, 0.06618827433497532, 0.1499999999999999, 0.10986605623476997, 0.030000000000000027], [0.08566908366065622, 0.063312300114305, 0.1200000000000001, 0.10993308367469123, 0.030000000000000027], [0.0797229427809979, 0.060198109403157174, 0.10000000000000009, 0.10618102070203594, 0.030000000000000027], [0.07288371043672341, 0.05686597723029374, 0.08000000000000007, 0.10000000000000009, 0.030000000000000027], [0.06914641350390735, 0.05484240139646612, 0.07000000000000006, 0.09640183308300476, 0.030000000000000027], [0.06614633521788378, 0.052543069127053865, 0.06499999999999995, 0.09281286722582172, 0.030000000000000027], [0.06305679788250614, 0.05001255088566925, 0.06000000000000005, 0.08924705003189404, 0.030000000000000027], [0.06037495501729881, 0.04730123883487214, 0.05499999999999994, 0.08714677183834096, 0.030000000000000027]]}, "weighted_growth": [0.12949052199694494, 0.09702660703535505, 0.09195487377816372, 0.08566908366065622, 0.0797229427809979, 0.07288371043672341, 0.06914641350390735, 0.06614633521788378, 0.06305679788250614, 0.06037495501729881], "fcf_table": {"columns": ["预测FCF(百万CNY)", "折现因子", "现值(百万CNY)"], "index": ["第1年", "第2年", "第3年", "第4年", "第5年", "第6年", "第7年", "第8年", "第9年", "第10年", "终值(第10年末)"], "data": [[197612.6346939865, 1.1, 179647.84972180592], [216786.31814566112, 1.2100000000000002, 179162.2464013728], [236720.87666757824, 1.3310000000000004, 177851.89832274846], [257000.53725503688, 1.4641000000000004, 175534.82498124224], [277489.3763813059, 1.6105100000000006, 172299.07071754028], [297713.831738748, 1.7715610000000008, 168051.69663294], [318299.6754539881, 1.9487171000000012, 163338.0624894131], [339354.03248631116, 2.1435888100000016, 158311.16065879766], [360752.6111234139, 2.357947691000002, 152994.3231990949], [382533.033792363, 2.5937424601000023, 147483.04416376573], [394009.02480613394, null, 2170107.649838267]]}, "investment_breakdown_bn": {"Investmentin Financial Assets": 635426000000.0, "Long Term Equity Investment": 348712000000.0}, "business_split": {"note": "基准期归属 = 用于 DCF 的经营性 FCF 基准 × 分项权重。预测期「按权重拆分」= 当年模型预测合并 FCF × 各分项权重（结构展示，非分部报表口径）。「分项独立复利」= 各分部自基准起按自身增速滚动，各行加总与合并 FCF 路径存在差异。第四分项增速与 Morgan Stanley Main 表 Others 收入同比一致；上市股权等另见资产负债表 SOTP。", "fcf_basis_bn": 174.9573, "segments": [{"name": "增值服务(VAS/游戏社交)", "weight": 0.42, "allocated_base_fcf_bn": 73.4821, "yearly_growth": [0.15701135452175663, 0.07181940040240353, 0.06618827433497532, 0.063312300114305, 0.060198109403157174, 0.05686597723029374, 0.05484240139646612, 0.052543069127053865, 0.05001255088566925, 0.04730123883487214]}, {"name": "营销服务(广告)", "weight": 0.17, "allocated_base_fcf_bn": 29.7427, "yearly_growth": [0.1944320859492148, 0.17500000000000004, 0.1499999999999999, 0.1200000000000001, 0.10000000000000009, 0.08000000000000007, 0.07000000000000006, 0.06499999999999995, 0.06000000000000005, 0.05499999999999994]}, {"name": "金融科技与企业服务", "weight": 0.33, "allocated_base_fcf_bn": 57.7359, "yearly_growth": [0.08246522863235772, 0.10518926929195627, 0.10986605623476997, 0.10993308367469123, 0.10618102070203594, 0.10000000000000009, 0.09640183308300476, 0.09281286722582172, 0.08924705003189404, 0.08714677183834096]}, {"name": "投资及其他(MS Main Others收入YoY)", "weight": 0.08, "allocated_base_fcf_bn": 13.9966, "yearly_growth": [0.040984662972032515, 0.030000000000000027, 0.030000000000000027, 0.030000000000000027, 0.030000000000000027, 0.030000000000000027, 0.030000000000000027, 0.030000000000000027, 0.030000000000000027, 0.030000000000000027]}], "yearly_weighted_split": [{"period": "第1年", "total_fcf_bn": 197.6126, "by_segment_bn": {"增值服务(VAS/游戏社交)": 82.9973, "营销服务(广告)": 33.5941, "金融科技与企业服务": 65.2122, "投资及其他(MS Main Others收入YoY)": 15.809}}, {"period": "第2年", "total_fcf_bn": 216.7863, "by_segment_bn": {"增值服务(VAS/游戏社交)": 91.0503, "营销服务(广告)": 36.8537, "金融科技与企业服务": 71.5395, "投资及其他(MS Main Others收入YoY)": 17.3429}}, {"period": "第3年", "total_fcf_bn": 236.7209, "by_segment_bn": {"增值服务(VAS/游戏社交)": 99.4228, "营销服务(广告)": 40.2425, "金融科技与企业服务": 78.1179, "投资及其他(MS Main Others收入YoY)": 18.9377}}, {"period": "第4年", "total_fcf_bn": 257.0005, "by_segment_bn": {"增值服务(VAS/游戏社交)": 107.9402, "营销服务(广告)": 43.6901, "金融科技与企业服务": 84.8102, "投资及其他(MS Main Others收入YoY)": 20.56}}, {"period": "第5年", "total_fcf_bn": 277.4894, "by_segment_bn": {"增值服务(VAS/游戏社交)": 116.5455, "营销服务(广告)": 47.1732, "金融科技与企业服务": 91.5715, "投资及其他(MS Main Others收入YoY)": 22.1992}}, {"period": "第6年", "total_fcf_bn": 297.7138, "by_segment_bn": {"增值服务(VAS/游戏社交)": 125.0398, "营销服务(广告)": 50.6114, "金融科技与企业服务": 98.2456, "投资及其他(MS Main Others收入YoY)": 23.8171}}, {"period": "第7年", "total_fcf_bn": 318.2997, "by_segment_bn": {"增值服务(VAS/游戏社交)": 133.6859, "营销服务(广告)": 54.1109, "金融科技与企业服务": 105.0389, "投资及其他(MS Main Others收入YoY)": 25.464}}, {"period": "第8年", "total_fcf_bn": 339.354, "by_segment_bn": {"增值服务(VAS/游戏社交)": 142.5287, "营销服务(广告)": 57.6902, "金融科技与企业服务": 111.9868, "投资及其他(MS Main Others收入YoY)": 27.1483}}, {"period": "第9年", "total_fcf_bn": 360.7526, "by_segment_bn": {"增值服务(VAS/游戏社交)": 151.5161, "营销服务(广告)": 61.3279, "金融科技与企业服务": 119.0484, "投资及其他(MS Main Others收入YoY)": 28.8602}}, {"period": "第10年", "total_fcf_bn": 382.533, "by_segment_bn": {"增值服务(VAS/游戏社交)": 160.6639, "营销服务(广告)": 65.0306, "金融科技与企业服务": 126.2359, "投资及其他(MS Main Others收入YoY)": 30.6026}}], "segment_independent_roll_bn": [{"period": "第1年", "增值服务(VAS/游戏社交)": 85.0196, "营销服务(广告)": 35.5257, "金融科技与企业服务": 62.4971, "投资及其他(MS Main Others收入YoY)": 14.5702, "_independent_sum_bn": 197.6126}, {"period": "第2年", "增值服务(VAS/游戏社交)": 91.1257, "营销服务(广告)": 41.7427, "金融科技与企业服务": 69.0711, "投资及其他(MS Main Others收入YoY)": 15.0073, "_independent_sum_bn": 216.9468}, {"period": "第3年", "增值服务(VAS/游戏社交)": 97.1571, "营销服务(广告)": 48.0041, "金融科技与企业服务": 76.6597, "投资及其他(MS Main Others收入YoY)": 15.4576, "_independent_sum_bn": 237.2785}, {"period": "第4年", "增值服务(VAS/游戏社交)": 103.3083, "营销服务(广告)": 53.7646, "金融科技与企业服务": 85.0872, "投资及其他(MS Main Others收入YoY)": 15.9213, "_independent_sum_bn": 258.0814}, {"period": "第5年", "增值服务(VAS/游戏社交)": 109.5273, "营销服务(广告)": 59.141, "金融科技与企业服务": 94.1218, "投资及其他(MS Main Others收入YoY)": 16.3989, "_independent_sum_bn": 279.1891}, {"period": "第6年", "增值服务(VAS/游戏社交)": 115.7557, "营销服务(广告)": 63.8723, "金融科技与企业服务": 103.534, "投资及其他(MS Main Others收入YoY)": 16.8909, "_independent_sum_bn": 300.0529}, {"period": "第7年", "增值服务(VAS/游戏社交)": 122.104, "营销服务(广告)": 68.3434, "金融科技与企业服务": 113.5148, "投资及其他(MS Main Others收入YoY)": 17.3976, "_independent_sum_bn": 321.3599}, {"period": "第8年", "增值服务(VAS/游戏社交)": 128.5197, "营销服务(广告)": 72.7857, "金融科技与企业服务": 124.0505, "投资及其他(MS Main Others收入YoY)": 17.9195, "_independent_sum_bn": 343.2755}, {"period": "第9年", "增值服务(VAS/游戏社交)": 134.9473, "营销服务(广告)": 77.1528, "金融科技与企业服务": 135.1216, "投资及其他(MS Main Others收入YoY)": 18.4571, "_independent_sum_bn": 365.6789}, {"period": "第10年", "增值服务(VAS/游戏社交)": 141.3305, "营销服务(广告)": 81.3962, "金融科技与企业服务": 146.897, "投资及其他(MS Main Others收入YoY)": 19.0108, "_independent_sum_bn": 388.6346}]}}</script>
+  <script>
+(function () {
+  const el = document.getElementById("dcf-panel-data");
+  if (!el) return;
+  let data;
+  try { data = JSON.parse(el.textContent); }
+  catch (e) { return; }
+  const m = data.meta || {};
+  const s = data.summary || {};
+  document.getElementById("panel-meta").textContent =
+    "生成：" + (data.generatedAt || "") +
+    " · WACC " + (m.wacc != null ? (m.wacc * 100).toFixed(1) + "%" : "") +
+    " · 终值增长 " + (m.terminal_g != null ? (m.terminal_g * 100).toFixed(1) + "%" : "") +
+    " · 预测 " + (m.years || "") + " 年 · " + (m.forecast_mode || "") +
+    (m.segment_yoy_source ? " · " + m.segment_yoy_source : "");
+
+  function num(x, d) {
+    if (x == null || x === "") return "—";
+    if (typeof x !== "number" || !isFinite(x)) return String(x);
+    return x.toFixed(d);
+  }
+  function numBn(x) { return num(x, 2); }
+  function pct(x) {
+    if (x == null) return "—";
+    return (x * 100).toFixed(2) + "%";
+  }
+
+  const kpis = [];
+  kpis.push({ label: "基准 FCF（十亿 CNY）", val: numBn(s.baseline_fcf_bn) });
+  if (s.fcf_operating_bn != null)
+    kpis.push({ label: "经营性 FCF 基准", val: numBn(s.fcf_operating_bn), sub: s.investment_fcf_share != null ? "已剔除投资占比 " + pct(s.investment_fcf_share) : "" });
+  kpis.push({ label: "企业价值 EV", val: numBn(s.ev_bn), sub: "十亿 CNY" });
+  if (s.equity_operating_bn != null && s.investment_nav_bn != null) {
+    kpis.push({ label: "股权-经营", val: numBn(s.equity_operating_bn) });
+    kpis.push({ label: "投资资产", val: numBn(s.investment_nav_bn) });
+    kpis.push({ label: "股权-合计(SOTP)", val: numBn(s.equity_total_bn), sub: "含投资加回" });
+  } else {
+    kpis.push({ label: "股权价值", val: numBn(s.equity_bn) });
+  }
+  kpis.push({ label: "每股-含投资/主结果（HKD）", val: num(s.per_share_hkd, 2), sub: s.spot_hkd != null ? "市价 " + num(s.spot_hkd, 2) : "" });
+  if (s.per_share_hkd_operating != null)
+    kpis.push({ label: "每股-仅经营（HKD）", val: num(s.per_share_hkd_operating, 2) });
+
+  const kg = document.getElementById("kpi");
+  kpis.forEach(function (k) {
+    const d = document.createElement("div");
+    d.className = "kpi";
+    d.innerHTML = "<label>" + k.label + "</label><div class=\"val\">" + k.val + "</div>" +
+      (k.sub ? "<div class=\"sub\">" + k.sub + "</div>" : "");
+    kg.appendChild(d);
+  });
+
+  function fillTable(tableId, payload) {
+    if (!payload || !payload.columns) return false;
+    const tb = document.getElementById(tableId);
+    const thead = document.createElement("thead");
+    const hr = document.createElement("tr");
+    hr.appendChild(document.createElement("th")).textContent = " ";
+    payload.columns.forEach(function (c) {
+      const th = document.createElement("th");
+      th.textContent = c;
+      hr.appendChild(th);
+    });
+    thead.appendChild(hr);
+    const tbody = document.createElement("tbody");
+    payload.index.forEach(function (rowName, ri) {
+      const tr = document.createElement("tr");
+      const t0 = document.createElement("td");
+      t0.textContent = rowName;
+      tr.appendChild(t0);
+      payload.data[ri].forEach(function (cell) {
+        const td = document.createElement("td");
+        if (typeof cell === "number" && isFinite(cell))
+          td.textContent = Math.abs(cell) >= 1e5 ? cell.toExponential(4) : num(cell, 4);
+        else if (cell == null || cell === "")
+          td.textContent = "—";
+        else
+          td.textContent = String(cell);
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+    tb.appendChild(thead);
+    tb.appendChild(tbody);
+    return true;
+  }
+
+  function renderBusinessSplit(bs, ny) {
+    if (!bs || !bs.segments || !bs.segments.length) return;
+    document.getElementById("sec-business").style.display = "block";
+    var noteEl = document.getElementById("biz-note");
+    if (noteEl) noteEl.textContent = bs.note || "";
+    var segs = bs.segments;
+    var names = segs.map(function (s) { return s.name; });
+
+    var tb0 = document.getElementById("tb-biz-base");
+    var thead0 = document.createElement("thead");
+    var hr0 = document.createElement("tr");
+    hr0.appendChild(document.createElement("th")).textContent = "业务";
+    hr0.appendChild(document.createElement("th")).textContent = "权重";
+    hr0.appendChild(document.createElement("th")).textContent = "基准归属FCF(十亿)";
+    for (var yi = 0; yi < ny; yi++) {
+      var th = document.createElement("th");
+      th.textContent = "第" + (yi + 1) + "年增速";
+      hr0.appendChild(th);
+    }
+    thead0.appendChild(hr0);
+    var tbody0 = document.createElement("tbody");
+    segs.forEach(function (s) {
+      var tr = document.createElement("tr");
+      tr.appendChild(document.createElement("td")).textContent = s.name;
+      tr.appendChild(document.createElement("td")).textContent = pct(s.weight);
+      tr.appendChild(document.createElement("td")).textContent = numBn(s.allocated_base_fcf_bn);
+      var yg = s.yearly_growth || [];
+      for (var yi = 0; yi < ny; yi++) {
+        var td = document.createElement("td");
+        td.textContent = yg[yi] != null ? pct(yg[yi]) : "—";
+        tr.appendChild(td);
+      }
+      tbody0.appendChild(tr);
+    });
+    tb0.appendChild(thead0);
+    tb0.appendChild(tbody0);
+
+    var yw = bs.yearly_weighted_split || [];
+    var tb1 = document.getElementById("tb-biz-yearly");
+    var thead1 = document.createElement("thead");
+    var hr1 = document.createElement("tr");
+    hr1.appendChild(document.createElement("th")).textContent = "期间";
+    hr1.appendChild(document.createElement("th")).textContent = "合并FCF";
+    names.forEach(function (nm) {
+      var th = document.createElement("th");
+      th.textContent = nm.length > 14 ? nm.slice(0, 12) + "…" : nm;
+      hr1.appendChild(th);
+    });
+    thead1.appendChild(hr1);
+    var tbody1 = document.createElement("tbody");
+    yw.forEach(function (row) {
+      var tr = document.createElement("tr");
+      tr.appendChild(document.createElement("td")).textContent = row.period || "";
+      tr.appendChild(document.createElement("td")).textContent = numBn(row.total_fcf_bn);
+      names.forEach(function (nm) {
+        var td = document.createElement("td");
+        var v = row.by_segment_bn && row.by_segment_bn[nm];
+        td.textContent = v != null ? numBn(v) : "—";
+        tr.appendChild(td);
+      });
+      tbody1.appendChild(tr);
+    });
+    tb1.appendChild(thead1);
+    tb1.appendChild(tbody1);
+
+    var roll = bs.segment_independent_roll_bn || [];
+    var tb2 = document.getElementById("tb-biz-roll");
+    var thead2 = document.createElement("thead");
+    var hr2 = document.createElement("tr");
+    hr2.appendChild(document.createElement("th")).textContent = "期间";
+    names.forEach(function (nm) {
+      var th = document.createElement("th");
+      th.textContent = nm.length > 14 ? nm.slice(0, 12) + "…" : nm;
+      hr2.appendChild(th);
+    });
+    hr2.appendChild(document.createElement("th")).textContent = "分项加总";
+    thead2.appendChild(hr2);
+    var tbody2 = document.createElement("tbody");
+    roll.forEach(function (row) {
+      var tr = document.createElement("tr");
+      tr.appendChild(document.createElement("td")).textContent = row.period || "";
+      names.forEach(function (nm) {
+        var td = document.createElement("td");
+        var v = row[nm];
+        td.textContent = v != null ? numBn(v) : "—";
+        tr.appendChild(td);
+      });
+      var tdSum = document.createElement("td");
+      tdSum.textContent = row._independent_sum_bn != null ? numBn(row._independent_sum_bn) : "—";
+      tr.appendChild(tdSum);
+      tbody2.appendChild(tr);
+    });
+    tb2.appendChild(thead2);
+    tb2.appendChild(tbody2);
+  }
+
+  renderBusinessSplit(data.business_split, m.years || 10);
+
+  if (fillTable("tb-segment", data.segment_detail))
+    document.getElementById("sec-segment").style.display = "block";
+
+  function fillFcfTableFormatted(payload) {
+    if (!payload || !payload.columns) return;
+    var tb = document.getElementById("tb-fcf");
+    var thead = document.createElement("thead");
+    var hr = document.createElement("tr");
+    hr.appendChild(document.createElement("th")).textContent = " ";
+    payload.columns.forEach(function (c) {
+      var th = document.createElement("th");
+      th.textContent = c;
+      hr.appendChild(th);
+    });
+    thead.appendChild(hr);
+    var tbody = document.createElement("tbody");
+    payload.index.forEach(function (rowName, ri) {
+      var tr = document.createElement("tr");
+      var t0 = document.createElement("td");
+      t0.textContent = rowName;
+      tr.appendChild(t0);
+      payload.data[ri].forEach(function (cell, ci) {
+        var td = document.createElement("td");
+        var colName = String(payload.columns[ci] || "");
+        if (typeof cell === "number" && isFinite(cell)) {
+          if (colName.indexOf("折现因子") >= 0)
+            td.textContent = cell.toFixed(4);
+          else
+            td.textContent = cell.toFixed(2);
+        } else if (cell == null || cell === "")
+          td.textContent = "—";
+        else
+          td.textContent = String(cell);
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+    tb.appendChild(thead);
+    tb.appendChild(tbody);
+  }
+
+  fillFcfTableFormatted(data.fcf_table);
+
+  const ib = data.investment_breakdown_bn;
+  if (ib && Object.keys(ib).length) {
+    document.getElementById("sec-inv-bd").style.display = "block";
+    const tb = document.getElementById("tb-inv");
+    const tbody = document.createElement("tbody");
+    Object.keys(ib).forEach(function (k) {
+      const tr = document.createElement("tr");
+      tr.appendChild(document.createElement("td")).textContent = k;
+      tr.appendChild(document.createElement("td")).textContent = numBn(ib[k]);
+      tbody.appendChild(tr);
+    });
+    tb.appendChild(tbody);
+  }
+})();
+  </script>
+</body>
+</html>
